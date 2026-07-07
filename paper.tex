@@ -4,11 +4,9 @@
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{multirow}
-\usepackage{hyperref}
 \usepackage{lineno}
 \usepackage[margin=2.5cm]{geometry}
-
-\linenumbers
+\usepackage{hyperref}
 
 \journal{Applied Thermal Engineering}
 
@@ -18,12 +16,11 @@
 
 \title{Multi-Mechanism Pre-training Enables Robust Physics-Informed Fouling Prediction under Sparse Industrial Data}
 
-\author[1]{Jiancheng Liu}
-\cormark[1]
+\author[1]{Jiancheng Liu\corref{cor1}}
 
 \address[1]{College of Chemical and Biological Engineering, Zhejiang University, Hangzhou 310058, China}
 
-\cortext[1]{Corresponding author: 3240101908@zju.edu.cn}
+\cortext[cor1]{Corresponding author: 3240101908@zju.edu.cn}
 
 \begin{abstract}
 Heat exchanger fouling is a major source of energy loss in the process industry, yet accurate prediction of fouling resistance evolution $R_f(t)$ is hindered by severe data scarcity in industrial settings. This study proposes a multi-mechanism pre-training framework that leverages five distinct fouling ODE models to pre-train a Physics-Informed Neural Network (PINN) on diverse synthetic data, followed by parameter-efficient fine-tuning on extremely sparse real measurements ($N = 5$--$30$ points). We validate the framework on 18 real fouling curves digitized from three peer-reviewed studies, spanning crystallization fouling, crude oil fouling, and CaCO$_3$ precipitation with induction periods. A critical baseline reveals that direct ODE curve fitting fails on 15 of 18 curves with sparse data ($R^2 \approx 0$ or negative), while PINN pre-training rescues 12 of these failures. Key findings include: (1) multi-mechanism pre-training is essential not for coverage but for \textit{diversity}---single-mechanism (Kern-Seaton only) pre-training catastrophically overfits, achieving $R^2 = -1329$ on its own target curve type, while multi-mechanism pre-training reaches $R^2 = 0.94$ on the same curve; (2) the framework achieves mean $R^2 > 0.90$ on 12 of 18 curves with only 15 training points in 5-seed multi-seed validation; (3) the pre-trained PINN consistently outperforms Random Forest in extrapolation ($\Delta R^2 = +1.3$ to $+18.7$ at $N=5$); and (4) PINN-driven cleaning strategies reduce dimensionless cost ratios by 20--97\% versus fixed-interval policies. The approach requires only publicly available physics models for pre-training and approximately 3 seconds of fine-tuning per heat exchanger on consumer GPU hardware.
@@ -34,6 +31,8 @@ Physics-Informed Neural Networks \sep heat exchanger fouling \sep sparse data \s
 \end{keyword}
 
 \end{frontmatter}
+
+\linenumbers
 
 %=====================================================================
 \section{Introduction}
@@ -156,7 +155,7 @@ We digitized 18 real $R_f(t)$ curves from three peer-reviewed studies using WebP
 \centering
 \caption{Real fouling curve dataset.}
 \label{tab:dataset}
-\begin{tabular}{@{}p{2.8cm}p{2.2cm}p{2.2cm}ccp{1.5cm}@{}}
+\begin{tabular}{@{}p{2.8cm}p{2.2cm}p{2.2cm}ccp{2.3cm}p{1.5cm}@{}}
 \toprule
 Source & Fouling Type & System & Curves & Time Range & $R_f$ Range (m$^2\cdot$K/W) & Domain \\
 \midrule
@@ -379,7 +378,7 @@ Table~\ref{tab:all18_5seed} presents the complementary 5-seed $\times$ 18-curve 
 \toprule
 Curve & PINN $R^2$ & ODE-fit $R^2$ & RF $R^2$ & R$^2>$0.9? & Best \\
 \midrule
-S001---Phosphoric acid & 0.945$\pm$0.011 & \textbf{0.986}$\pm$0.004$ & 0.969$\pm$0.023 & Y & ODE \\
+S001---Phosphoric acid & 0.945$\pm$0.011 & \textbf{0.986}$\pm$0.004 & 0.969$\pm$0.023 & Y & ODE \\
 S002 CBA---Crude oil & 0.258$\pm$0.207 & NC & \textbf{0.539}$\pm$0.083 & N & RF \\
 S002 FED---Crude oil & 0.642$\pm$0.050 & NC & \textbf{0.648}$\pm$0.055 & N & Tie* \\
 S003 Run1---Unmodified & 0.743$\pm$0.005 & NC & \textbf{0.866}$\pm$0.044 & N & RF \\
