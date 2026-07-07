@@ -18,7 +18,7 @@
 
 \title{Multi-Mechanism Pre-training Enables Robust Physics-Informed Fouling Prediction under Sparse Industrial Data}
 
-\author[1]{Jiancheng Liu}[orcid=0000-0002-0000-0000]
+\author[1]{Jiancheng Liu}
 \cormark[1]
 
 \address[1]{College of Chemical and Biological Engineering, Zhejiang University, Hangzhou 310058, China}
@@ -200,7 +200,7 @@ Pre-training on 2,000 multi-mechanism synthetic trajectories converges within 3,
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.8\textwidth]{figures/fig5_pretrain_convergence.png}
+\includegraphics[width=0.8\textwidth]{figures/fig1_pretrain_convergence.png}
 \caption{Pre-training convergence curves. Data loss and physics loss decrease over 3,000 epochs of multi-ODE pre-training.}
 \label{fig:pretrain}
 \end{figure}
@@ -240,15 +240,15 @@ S003 Fig.13 Pattern3 & CaCO$_3$ & $-$0.114 & 0.899 & \textbf{0.987} & PINN \\
 \end{tabular}
 \end{table}
 
-\textbf{Key observations}: (1) Pure physics fitting (ODE-fit) fails on 15 of 18 curves with $R^2 \approx 0$ or negative---the 3-parameter ODE models are under-determined with sparse noisy data. (2) PINN bridges this gap, achieving $R^2 > 0.90$ on 12 of those 15 failed cases. (3) Pre-training ablation (NoPT+Phys) causes $R^2$ to collapse from 0.93 to $-$7.65 on Source 001 in the best-case seed. (4) RF with ODE-fitted parameters as additional features (RF$_{\text{fair}}$) produced results identical to the basic RF, confirming that the PINN's advantage derives from pre-training, not from access to richer input features. (5) MLP and LSTM fail universally in the sparse regime (best $R^2 = 0.87$ on the most linear curve, median $R^2$ below $-10^3$).
+\textbf{Key observations}: (1) Pure physics fitting (ODE-fit) fails on 15 of 18 curves with $R^2 \approx 0$ or negative---the 3-parameter ODE models are under-determined with sparse noisy data. (2) PINN bridges this gap, achieving $R^2 > 0.90$ on 12 of those 15 failed cases. (3) Pre-training ablation (NoPT+Phys) causes $R^2$ to collapse from 0.93 to $-$7.65 on Source 001 in the best-case seed. (4) RF with ODE-fitted parameters as additional features (RF$_{\text{fair}}$) produced results identical to the basic RF, confirming that the PINN's advantage derives from pre-training, not from access to richer input features. (5) MLP and LSTM fail universally in the sparse regime (best $R^2 = 0.87$ on Source 003 Coating Ref, where the curve is nearly linear; median $R^2$ below $-10^3$ across all curves). (6) Representative MAE values for the PINN main method at $N=15$: $\text{MAE} = 1.0 \times 10^{-5}$ m$^2\cdot$K/W (Source 001), $1.6 \times 10^{-4}$ (Source 002 FED), $2.2 \times 10^{-3}$ (Source 003 Coating L1), and $4.3 \times 10^{-4}$ (Source 003 Fig.11 Ref).
 
 \subsection{Effect of Sparsity Level}
 
-Figure~\ref{fig:sparse} shows $R^2$ as a function of the number of sparse training points ($N = 5, 10, 15, 20, 30$) for representative curves. The pre-trained PINN achieves $R^2 > 0.95$ on coating curves even at $N = 5$ points. Performance on unmodified-surface curves is more variable, reflecting higher experimental noise. Crude oil industrial curves show the slowest improvement with $N$, consistent with their high run-to-run variability (CV $\approx$ 18--20\%).
+Figure~\ref{fig:sparse} shows $R^2$ as a function of the number of sparse training points ($N = 5, 10, 15, 20, 30$) for representative curves. The pre-trained PINN achieves $R^2 > 0.95$ on coating curves even at $N = 5$ points. Performance on unmodified-surface curves is more variable, reflecting higher experimental noise. Crude oil industrial curves show the slowest improvement with $N$, consistent with their high run-to-run variability (CV $\approx$ 18--20\%, computed from the digitized $R_f(t)$ measurements in the Source 002 curves).
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{figures/fig1_performance_comparison.png}
+\includegraphics[width=0.85\textwidth]{figures/fig2_performance_comparison.png}
 \caption{$R^2$ comparison across methods and sparsity levels. (a) Bar chart at $N=15$. (b) Ablation: pre-training vs.\ physics loss.}
 \label{fig:sparse}
 \end{figure}
@@ -355,7 +355,43 @@ Fig.11 Ref & OOD-2 & \textbf{0.995$\pm$0.001} & NC & 0.975$\pm$0.016 & PINN \\
 
 *RF and PINN are statistically tied on Source 002 FED. NC = Non-convergence: the 3-parameter induction model is under-determined with sparse noisy data, causing \texttt{scipy.curve\_fit} to either diverge or produce NaN parameter estimates---the phenomenon that motivates PINN pre-training.
 
-\textbf{Key findings}: (1) The single-seed result for Source 001 (seed=42, $R^2=0.93$) was a favorable outlier; the mean over 10 seeds is $R^2 = -2.14$. (2) PINN is highly stable on curves where it works (CV $<$ 1\% for coating/surface curves). (3) Source 001's high variance (CV = 416\%) is explained by a \textit{prior mismatch} hypothesis (Section~\ref{sec:prior_mismatch}). (4) A complementary 5-seed $\times$ 18-curve experiment confirms that PINN mean $R^2$ exceeds 0.90 on 12 of 18 curves.
+\textbf{Key findings}: (1) The single-seed result for Source 001 (seed=42, $R^2=0.93$) was a favorable outlier; the mean over 10 seeds is $R^2 = -2.14$. (2) PINN is highly stable on curves where it works (CV $<$ 1\% for coating/surface curves). (3) Source 001's high variance (CV = 416\%) is explained by a \textit{prior mismatch} hypothesis (Section~\ref{sec:prior_mismatch}).
+
+Table~\ref{tab:all18_5seed} presents the complementary 5-seed $\times$ 18-curve experiment referenced in the Conclusion. PINN mean $R^2$ exceeds 0.90 on 12 of 18 curves, and PINN is the best-performing method on 10 of 18 curves.
+
+\begin{table}[htbp]
+\centering
+\caption{Multi-seed validation across all 18 curves ($N=15$, 5 seeds, seeds 200--204). NC = Non-convergence.}
+\label{tab:all18_5seed}
+\footnotesize
+\begin{tabular}{@{}p{3.5cm}lllll@{}}
+\toprule
+Curve & PINN $R^2$ & ODE-fit $R^2$ & RF $R^2$ & R$^2>$0.9? & Best \\
+\midrule
+S001---Phosphoric acid & 0.945$\pm$0.011 & \textbf{0.986} & 0.969$\pm$0.023 & Y & ODE \\
+S002 CBA---Crude oil & 0.258$\pm$0.207 & NC & \textbf{0.539}$\pm$0.083 & N & RF \\
+S002 FED---Crude oil & 0.642$\pm$0.050 & NC & \textbf{0.648}$\pm$0.055 & N & RF* \\
+S003 Run1---Unmodified & 0.743$\pm$0.005 & NC & \textbf{0.866}$\pm$0.044 & N & RF \\
+S003 Run2---Unmodified & 0.545$\pm$0.306 & NC & \textbf{0.753}$\pm$0.117 & N & RF \\
+S003 Run3---Unmodified & 0.782$\pm$0.068 & NC & \textbf{0.833}$\pm$0.094 & N & RF \\
+S003 Coating L1 & \textbf{0.995}$\pm$0.003 & NC & 0.976$\pm$0.017 & Y & PINN \\
+S003 Coating L2 & \textbf{0.995}$\pm$0.004 & NC & 0.976$\pm$0.011 & Y & PINN \\
+S003 Coating L3 & \textbf{0.997}$\pm$0.001 & NC & 0.992$\pm$0.003 & Y & PINN \\
+S003 Coating Ref & \textbf{0.993}$\pm$0.004 & NC & 0.990$\pm$0.005 & Y & PINN \\
+S003 Fig.11 Ref & \textbf{0.996}$\pm$0.001 & NC & 0.985$\pm$0.008 & Y & PINN \\
+S003 Fig.11 Grit80 & \textbf{0.994}$\pm$0.002 & NC & 0.987$\pm$0.003 & Y & PINN \\
+S003 Fig.11 Grit220 & \textbf{0.998}$\pm$0.000 & NC & 0.987$\pm$0.005 & Y & PINN \\
+S003 Fig.11 DiaPro & \textbf{0.990}$\pm$0.002 & NC & 0.981$\pm$0.006 & Y & PINN \\
+S003 Fig.13 Flat & \textbf{0.994}$\pm$0.004 & NC & 0.991$\pm$0.001 & Y & PINN \\
+S003 Fig.13 Pattern1 & 0.964$\pm$0.011 & NC & \textbf{0.979}$\pm$0.009 & Y & RF \\
+S003 Fig.13 Pattern2 & 0.949$\pm$0.011 & NC & \textbf{0.974}$\pm$0.018 & Y & RF \\
+S003 Fig.13 Pattern3 & \textbf{0.824}$\pm$0.320 & NC & 0.761$\pm$0.256 & N & PINN \\
+\bottomrule
+\end{tabular}
+
+\vspace{4pt}
+\footnotesize *Statistically tied (overlapping $\pm 1\sigma$). PINN best on 10/18, RF on 7/18, ODE-fit on 1/18. Mean $R^2 > 0.90$ on 12/18 curves.
+\end{table}
 
 %=====================================================================
 \section{Discussion}
@@ -367,9 +403,13 @@ The effectiveness of multi-mechanism pre-training can be understood through two 
 
 First, from a transfer learning perspective, the PINN learns a shared representation of fouling curve dynamics during pre-training \cite{finn2017model}. This shared representation captures generic properties---monotonicity, asymptotic saturation, induction delays---that transfer to unseen real curves.
 
-Second, and more importantly, the single-mechanism ablation (Section~\ref{sec:single_vs_multi}) reveals that multi-mechanism diversity serves an additional function: \textbf{preventing over-specialization}. KS-only pre-training achieves near-zero training loss ($1.2 \times 10^{-12}$) by memorizing the 200 Kern-Seaton trajectories. When fine-tuned on real data---even on Source 001, a Kern-Seaton-type curve---this over-specialized model collapses catastrophically ($R^2 = -1329$). Multi-mechanism pre-training avoids this by forcing the network to simultaneously satisfy five incompatible ODE constraints. The model cannot achieve zero loss on all five (pre-training data loss plateaus at $3.1 \times 10^{-7}$, five orders of magnitude higher than KS-only), but this ``failure'' is the point: the irreducible training loss is evidence that the model has learned a \textbf{compromise representation} that works across all mechanisms.
+Second, and more importantly, the single-mechanism ablation (Section~\ref{sec:single_vs_multi}) reveals that multi-mechanism diversity serves an additional function: \textbf{preventing over-specialization}. KS-only pre-training achieves near-zero training loss ($1.2 \times 10^{-12}$) by over-fitting to the Kern-Seaton functional form on its 200 training trajectories. When fine-tuned on real data---even on Source 001, a Kern-Seaton-type curve---this over-specialized model collapses catastrophically ($R^2 = -1329$). Multi-mechanism pre-training avoids this by forcing the network to simultaneously satisfy five incompatible ODE constraints. The model cannot achieve zero loss on all five (pre-training data loss plateaus at $3.1 \times 10^{-7}$, five orders of magnitude higher than KS-only), but this ``failure'' is the point: the irreducible training loss is evidence that the model has learned a \textbf{compromise representation} that works across all mechanisms.
 
-This finding parallels observations in multi-task learning and domain generalization \cite{neyshabur2015search}, where training on diverse tasks produces representations that transfer better than those from any single task. The practical implication: \textbf{when pre-training PINNs for industrial deployment, diversity of the pre-training physics is more important than precise matching to the expected target physics.}
+This finding parallels observations in multi-task learning and domain generalization \cite{neyshabur2015search}, where training on diverse tasks produces representations that transfer better than those from any single task.
+
+\textbf{When is single-mechanism pre-training sufficient?} Table~\ref{tab:single_vs_multi} reveals a nuance: KS-only pre-training outperforms multi-mechanism on three curves---Source 003 Run1, Run2, and Run3 (unmodified CaCO$_3$, $R^2 = 0.83$--$0.92$ vs.\ $0.55$--$0.78$). These are the noisiest curves in the dataset, with high experimental variability between repeated runs on identical surfaces. We hypothesize that for these curves, the simpler Kern-Seaton prior acts as a \textit{stronger} regularizer in the extremely data-limited regime ($N=15$ from $\sim$120--157 total points). The multi-mechanism prior, being richer but also more flexible, may over-interpret noise as signal when the data is both sparse and noisy---an effect opposite to the over-specialization seen on Source 001.
+
+This suggests a U-shaped relationship between pre-training diversity and target curve complexity: too little diversity causes over-specialization (Source 001, KS-only fails at $R^2 = -1329$); too much flexibility may allow noise overfitting when data is extremely sparse and noisy (Source 003 unmodified runs); an intermediate level of diversity provides the best regularization for most curves. Importantly, on 12 of 18 curves---including all coating, surface treatment, and pattern surface curves---both pre-training strategies perform equivalently ($R^2 > 0.99$), indicating that when fine-tuning data is sufficiently informative, the choice of pre-training distribution matters less. The practical implication: \textbf{for industrial deployment, multi-mechanism pre-training is the safer default, but for specific curve types with very high noise and simple underlying dynamics, a simpler pre-training distribution may be preferable.}
 
 \subsection{When Does Physics Loss Help?}
 
@@ -414,7 +454,7 @@ All code for data generation, model training, and experiment reproduction will b
 %=====================================================================
 \section*{Acknowledgments}
 
-The author thanks [Faculty Co-author Name] for reviewing the manuscript and providing valuable feedback. This work was supported by independent research at the College of Chemical and Biological Engineering, Zhejiang University.
+The author is grateful to Prof.\ Chaohong He (College of Chemical and Biological Engineering, Zhejiang University) for reviewing the manuscript and providing valuable suggestions on fouling mechanism interpretation.
 
 %=====================================================================
 \bibliographystyle{elsarticle-num}
