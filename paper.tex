@@ -242,6 +242,17 @@ S003 Fig.13 Pattern3 & CaCO$_3$ & $-$0.114 & 0.899 & \textbf{0.987} & PINN \\
 
 \textbf{Key observations}: (1) Pure physics fitting (ODE-fit) fails on 15 of 18 curves with $R^2 \approx 0$ or negative---the 3-parameter ODE models are under-determined with sparse noisy data. (2) PINN bridges this gap, achieving $R^2 > 0.90$ on 12 of those 15 failed cases. (3) Pre-training ablation (NoPT+Phys) causes $R^2$ to collapse from 0.93 to $-$7.65 on Source 001 in the best-case seed. (4) RF with ODE-fitted parameters as additional features (RF$_{\text{fair}}$) produced results identical to the basic RF, confirming that the PINN's advantage derives from pre-training, not from access to richer input features. (5) MLP and LSTM fail universally in the sparse regime (best $R^2 = 0.87$ on Source 003 Coating Ref, where the curve is nearly linear; median $R^2$ below $-10^3$ across all curves). (6) Representative MAE values for the PINN main method at $N=15$: $\text{MAE} = 1.0 \times 10^{-5}$ m$^2\cdot$K/W (Source 001), $1.6 \times 10^{-4}$ (Source 002 FED), $2.2 \times 10^{-3}$ (Source 003 Coating L1), and $4.3 \times 10^{-4}$ (Source 003 Fig.11 Ref).
 
+\subsection{Prediction Curve Visualization}
+
+Figure~\ref{fig:pred_curves} shows representative prediction curves for four diverse fouling types at $N=15$, comparing the PINN main method against ODE-fit and RF baselines. The PINN captures the asymptotic saturation of phosphoric acid fouling (Fig.~\ref{fig:pred_curves}a, $R^2=0.93$), tracks the noisy industrial crude oil data with reasonable fidelity (Fig.~\ref{fig:pred_curves}b, $R^2=0.58$), and achieves near-perfect predictions on CaCO$_3$ coating curves (Fig.~\ref{fig:pred_curves}c, $R^2=0.998$). On the challenging unmodified CaCO$_3$ curve (Fig.~\ref{fig:pred_curves}d), all methods exhibit visible deviations from the true trajectory, consistent with the high experimental variability of these runs. The ODE-fit baseline produces plausible curves only on the asymptotic Source 001 case; on induction-type curves, it diverges rapidly. RF performs well as a 1D interpolator on smooth curves but produces step-function artifacts visible in Fig.~\ref{fig:pred_curves}d.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{figures/fig3_prediction_curves.png}
+\caption{Representative prediction curves: true $R_f(t)$ vs.\ PINN, ODE-fit, and RF predictions ($N=15$ sparse training points, seed=42). (a) Phosphoric acid---asymptotic; (b) Crude oil refinery FED---industrial noise; (c) CaCO$_3$ Coating L1---induction, high $R^2$; (d) CaCO$_3$ Unmodified Run2---high experimental variability.}
+\label{fig:pred_curves}
+\end{figure}
+
 \subsection{Effect of Sparsity Level}
 
 Figure~\ref{fig:sparse} shows $R^2$ as a function of the number of sparse training points ($N = 5, 10, 15, 20, 30$) for representative curves. The pre-trained PINN achieves $R^2 > 0.95$ on coating curves even at $N = 5$ points. Performance on unmodified-surface curves is more variable, reflecting higher experimental noise. Crude oil industrial curves show the slowest improvement with $N$, consistent with their high run-to-run variability (CV $\approx$ 18--20\%, computed from the digitized $R_f(t)$ measurements in the Source 002 curves).
