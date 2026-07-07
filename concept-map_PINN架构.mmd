@@ -1,0 +1,64 @@
+flowchart LR
+  %% ---- INPUT ----
+  subgraph Input["Input Layer (6 features)"]
+    t["t (time)"]
+    Tw["Tw (wall temp)"]
+    v["v (velocity)"]
+    A["A (deposition coeff)"]
+    B["B (removal coeff)"]
+    Ea["Ea (activation energy)"]
+  end
+
+  %% ---- HIDDEN ----
+  subgraph Hidden["Hidden Layers (Tanh)"]
+    H1["FC 64"]
+    H2["FC 64"]
+    H3["FC 64"]
+    H4["FC 64"]
+  end
+
+  %% ---- OUTPUT ----
+  Output["Rf(t)<br/>Fouling Resistance"]
+
+  %% ---- LOSSES ----
+  subgraph Losses["Loss Functions"]
+    direction TB
+    DataLoss["Data Loss<br/>MSE(Rf_pred − Rf_obs)<br/>uses labeled measurements"]
+    PhysLoss["Physics Loss<br/>MSE(dRf/dt − (φd − φr))<br/>enforced at collocation points"]
+    TotalLoss["Total Loss = Data Loss + λ × Physics Loss"]
+  end
+
+  %% ---- PHYSICS ----
+  subgraph Physics["Physics Constraint (Kern-Seaton ODE)"]
+    autograd["∂Rf/∂t via autograd"]
+    phid["φd = A·exp(−Ea/R·Tw)"]
+    phir["φr = B·τs·Rf<br/>τs = (f/2)·ρ·v²"]
+    residual["Residual:<br/>dRf/dt − (φd − φr)"]
+  end
+
+  %% Connections
+  Input --> H1 --> H2 --> H3 --> H4 --> Output
+
+  Output -->|"measured data"| DataLoss
+  Output -->|"compute gradient"| autograd
+  autograd --> residual
+  phid --> residual
+  phir --> residual
+  residual --> PhysLoss
+
+  DataLoss --> TotalLoss
+  PhysLoss --> TotalLoss
+  TotalLoss -->|"backprop<br/>update weights"| Hidden
+
+  %% Styles
+  classDef inputStyle fill:#e3f2fd,stroke:#1565c0
+  classDef hiddenStyle fill:#e8f5e9,stroke:#2e7d32
+  classDef outputStyle fill:#fff3e0,stroke:#e65100
+  classDef lossStyle fill:#fce4ec,stroke:#c62828
+  classDef physStyle fill:#f3e5f5,stroke:#6a1b9a
+
+  class t,Tw,v,A,B,Ea inputStyle
+  class H1,H2,H3,H4 hiddenStyle
+  class Output outputStyle
+  class DataLoss,PhysLoss,TotalLoss lossStyle
+  class autograd,phid,phir,residual physStyle

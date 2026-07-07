@@ -1,0 +1,2174 @@
+{
+  "source_001_fig7": {
+    "N=5": {
+      "fixed_25pct": {
+        "cost_ratio": 0.143363319778589,
+        "oracle_cost": 21.00429325066591,
+        "strategy_cost": 3.0112452100184752,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 21
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.09575400543194719,
+        "oracle_cost": 21.00429325066591,
+        "strategy_cost": 2.0112452100184752,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 21
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.09575400543194719,
+        "oracle_cost": 21.00429325066591,
+        "strategy_cost": 2.0112452100184752,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 21,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=10": {
+      "fixed_25pct": {
+        "cost_ratio": 0.143363319778589,
+        "oracle_cost": 21.00429325066591,
+        "strategy_cost": 3.0112452100184752,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 21
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.09575400543194719,
+        "oracle_cost": 21.00429325066591,
+        "strategy_cost": 2.0112452100184752,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 21
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.04814469108530538,
+        "oracle_cost": 21.00429325066591,
+        "strategy_cost": 1.011245210018475,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 21,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=15": {
+      "fixed_25pct": {
+        "cost_ratio": 0.143363319778589,
+        "oracle_cost": 21.00429325066591,
+        "strategy_cost": 3.0112452100184752,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 21
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.09575400543194719,
+        "oracle_cost": 21.00429325066591,
+        "strategy_cost": 2.0112452100184752,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 21
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.04814469108530538,
+        "oracle_cost": 21.00429325066591,
+        "strategy_cost": 1.011245210018475,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 21,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=20": {
+      "fixed_25pct": {
+        "cost_ratio": 0.143363319778589,
+        "oracle_cost": 21.00429325066591,
+        "strategy_cost": 3.0112452100184752,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 21
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.09575400543194719,
+        "oracle_cost": 21.00429325066591,
+        "strategy_cost": 2.0112452100184752,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 21
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.23858194847187258,
+        "oracle_cost": 21.00429325066591,
+        "strategy_cost": 5.011245210018475,
+        "n_cleanings_strategy": 5,
+        "n_cleanings_oracle": 21,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=30": {
+      "fixed_25pct": {
+        "cost_ratio": 0.143363319778589,
+        "oracle_cost": 21.00429325066591,
+        "strategy_cost": 3.0112452100184752,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 21
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.09575400543194719,
+        "oracle_cost": 21.00429325066591,
+        "strategy_cost": 2.0112452100184752,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 21
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.09575400543194719,
+        "oracle_cost": 21.00429325066591,
+        "strategy_cost": 2.0112452100184752,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 21,
+        "strategy": "PINN Predicted"
+      }
+    }
+  },
+  "source_002_cba": {
+    "N=5": {
+      "fixed_25pct": {
+        "cost_ratio": 2.7523679062633843,
+        "oracle_cost": 1.1436417827955951,
+        "strategy_cost": 3.1477229392284363,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 1
+      },
+      "fixed_33pct": {
+        "cost_ratio": 1.8779682340552453,
+        "oracle_cost": 1.1436417827955951,
+        "strategy_cost": 2.1477229392284363,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 1
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.12916888963896764,
+        "oracle_cost": 1.1436417827955951,
+        "strategy_cost": 0.14772293922843643,
+        "n_cleanings_strategy": 0,
+        "n_cleanings_oracle": 1,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=10": {
+      "fixed_25pct": {
+        "cost_ratio": 2.7523679062633843,
+        "oracle_cost": 1.1436417827955951,
+        "strategy_cost": 3.1477229392284363,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 1
+      },
+      "fixed_33pct": {
+        "cost_ratio": 1.8779682340552453,
+        "oracle_cost": 1.1436417827955951,
+        "strategy_cost": 2.1477229392284363,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 1
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.12916888963896764,
+        "oracle_cost": 1.1436417827955951,
+        "strategy_cost": 0.14772293922843643,
+        "n_cleanings_strategy": 0,
+        "n_cleanings_oracle": 1,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=15": {
+      "fixed_25pct": {
+        "cost_ratio": 2.7523679062633843,
+        "oracle_cost": 1.1436417827955951,
+        "strategy_cost": 3.1477229392284363,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 1
+      },
+      "fixed_33pct": {
+        "cost_ratio": 1.8779682340552453,
+        "oracle_cost": 1.1436417827955951,
+        "strategy_cost": 2.1477229392284363,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 1
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.12916888963896764,
+        "oracle_cost": 1.1436417827955951,
+        "strategy_cost": 0.14772293922843643,
+        "n_cleanings_strategy": 0,
+        "n_cleanings_oracle": 1,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=20": {
+      "fixed_25pct": {
+        "cost_ratio": 2.7523679062633843,
+        "oracle_cost": 1.1436417827955951,
+        "strategy_cost": 3.1477229392284363,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 1
+      },
+      "fixed_33pct": {
+        "cost_ratio": 1.8779682340552453,
+        "oracle_cost": 1.1436417827955951,
+        "strategy_cost": 2.1477229392284363,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 1
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.12916888963896764,
+        "oracle_cost": 1.1436417827955951,
+        "strategy_cost": 0.14772293922843643,
+        "n_cleanings_strategy": 0,
+        "n_cleanings_oracle": 1,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=30": {
+      "fixed_25pct": {
+        "cost_ratio": 2.7523679062633843,
+        "oracle_cost": 1.1436417827955951,
+        "strategy_cost": 3.1477229392284363,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 1
+      },
+      "fixed_33pct": {
+        "cost_ratio": 1.8779682340552453,
+        "oracle_cost": 1.1436417827955951,
+        "strategy_cost": 2.1477229392284363,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 1
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.12916888963896764,
+        "oracle_cost": 1.1436417827955951,
+        "strategy_cost": 0.14772293922843643,
+        "n_cleanings_strategy": 0,
+        "n_cleanings_oracle": 1,
+        "strategy": "PINN Predicted"
+      }
+    }
+  },
+  "source_002_fed": {
+    "N=5": {
+      "fixed_25pct": {
+        "cost_ratio": 1.0039835575474803,
+        "oracle_cost": 3.0933265605751488,
+        "strategy_cost": 3.1056490049423493,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 3
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.6807069876744088,
+        "oracle_cost": 3.0933265605751488,
+        "strategy_cost": 2.1056490049423493,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 3
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.034153847928265924,
+        "oracle_cost": 3.0933265605751488,
+        "strategy_cost": 0.1056490049423495,
+        "n_cleanings_strategy": 0,
+        "n_cleanings_oracle": 3,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=10": {
+      "fixed_25pct": {
+        "cost_ratio": 1.0039835575474803,
+        "oracle_cost": 3.0933265605751488,
+        "strategy_cost": 3.1056490049423493,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 3
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.6807069876744088,
+        "oracle_cost": 3.0933265605751488,
+        "strategy_cost": 2.1056490049423493,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 3
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.034153847928265924,
+        "oracle_cost": 3.0933265605751488,
+        "strategy_cost": 0.1056490049423495,
+        "n_cleanings_strategy": 0,
+        "n_cleanings_oracle": 3,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=15": {
+      "fixed_25pct": {
+        "cost_ratio": 1.0039835575474803,
+        "oracle_cost": 3.0933265605751488,
+        "strategy_cost": 3.1056490049423493,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 3
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.6807069876744088,
+        "oracle_cost": 3.0933265605751488,
+        "strategy_cost": 2.1056490049423493,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 3
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.034153847928265924,
+        "oracle_cost": 3.0933265605751488,
+        "strategy_cost": 0.1056490049423495,
+        "n_cleanings_strategy": 0,
+        "n_cleanings_oracle": 3,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=20": {
+      "fixed_25pct": {
+        "cost_ratio": 1.0039835575474803,
+        "oracle_cost": 3.0933265605751488,
+        "strategy_cost": 3.1056490049423493,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 3
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.6807069876744088,
+        "oracle_cost": 3.0933265605751488,
+        "strategy_cost": 2.1056490049423493,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 3
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.034153847928265924,
+        "oracle_cost": 3.0933265605751488,
+        "strategy_cost": 0.1056490049423495,
+        "n_cleanings_strategy": 0,
+        "n_cleanings_oracle": 3,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=30": {
+      "fixed_25pct": {
+        "cost_ratio": 1.0039835575474803,
+        "oracle_cost": 3.0933265605751488,
+        "strategy_cost": 3.1056490049423493,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 3
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.6807069876744088,
+        "oracle_cost": 3.0933265605751488,
+        "strategy_cost": 2.1056490049423493,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 3
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.034153847928265924,
+        "oracle_cost": 3.0933265605751488,
+        "strategy_cost": 0.1056490049423495,
+        "n_cleanings_strategy": 0,
+        "n_cleanings_oracle": 3,
+        "strategy": "PINN Predicted"
+      }
+    }
+  },
+  "source_003_run1": {
+    "N=5": {
+      "fixed_25pct": {
+        "cost_ratio": 1.005528963987174,
+        "oracle_cost": 2.8549751568468764,
+        "strategy_cost": 2.8707602116733595,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 3
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.6552632190815578,
+        "oracle_cost": 2.8549751568468764,
+        "strategy_cost": 1.8707602116733597,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 3
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.3049974741759415,
+        "oracle_cost": 2.8549751568468764,
+        "strategy_cost": 0.8707602116733597,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 3,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=10": {
+      "fixed_25pct": {
+        "cost_ratio": 1.005528963987174,
+        "oracle_cost": 2.8549751568468764,
+        "strategy_cost": 2.8707602116733595,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 3
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.6552632190815578,
+        "oracle_cost": 2.8549751568468764,
+        "strategy_cost": 1.8707602116733597,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 3
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.3049974741759415,
+        "oracle_cost": 2.8549751568468764,
+        "strategy_cost": 0.8707602116733597,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 3,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=15": {
+      "fixed_25pct": {
+        "cost_ratio": 1.005528963987174,
+        "oracle_cost": 2.8549751568468764,
+        "strategy_cost": 2.8707602116733595,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 3
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.6552632190815578,
+        "oracle_cost": 2.8549751568468764,
+        "strategy_cost": 1.8707602116733597,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 3
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.3049974741759415,
+        "oracle_cost": 2.8549751568468764,
+        "strategy_cost": 0.8707602116733597,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 3,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=20": {
+      "fixed_25pct": {
+        "cost_ratio": 1.005528963987174,
+        "oracle_cost": 2.8549751568468764,
+        "strategy_cost": 2.8707602116733595,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 3
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.6552632190815578,
+        "oracle_cost": 2.8549751568468764,
+        "strategy_cost": 1.8707602116733597,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 3
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.3049974741759415,
+        "oracle_cost": 2.8549751568468764,
+        "strategy_cost": 0.8707602116733597,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 3,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=30": {
+      "fixed_25pct": {
+        "cost_ratio": 1.005528963987174,
+        "oracle_cost": 2.8549751568468764,
+        "strategy_cost": 2.8707602116733595,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 3
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.6552632190815578,
+        "oracle_cost": 2.8549751568468764,
+        "strategy_cost": 1.8707602116733597,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 3
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.3049974741759415,
+        "oracle_cost": 2.8549751568468764,
+        "strategy_cost": 0.8707602116733597,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 3,
+        "strategy": "PINN Predicted"
+      }
+    }
+  },
+  "source_003_run2": {
+    "N=5": {
+      "fixed_25pct": {
+        "cost_ratio": 3.3870836458933673,
+        "oracle_cost": 0.8392394278305463,
+        "strategy_cost": 2.8425741409937504,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 1
+      },
+      "fixed_33pct": {
+        "cost_ratio": 2.195528570144575,
+        "oracle_cost": 0.8392394278305463,
+        "strategy_cost": 1.8425741409937504,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 1
+      },
+      "pinn_predicted": {
+        "cost_ratio": -0.1875815813530106,
+        "oracle_cost": 0.8392394278305463,
+        "strategy_cost": -0.15742585900624967,
+        "n_cleanings_strategy": 0,
+        "n_cleanings_oracle": 1,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=10": {
+      "fixed_25pct": {
+        "cost_ratio": 3.3870836458933673,
+        "oracle_cost": 0.8392394278305463,
+        "strategy_cost": 2.8425741409937504,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 1
+      },
+      "fixed_33pct": {
+        "cost_ratio": 2.195528570144575,
+        "oracle_cost": 0.8392394278305463,
+        "strategy_cost": 1.8425741409937504,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 1
+      },
+      "pinn_predicted": {
+        "cost_ratio": -0.1875815813530106,
+        "oracle_cost": 0.8392394278305463,
+        "strategy_cost": -0.15742585900624967,
+        "n_cleanings_strategy": 0,
+        "n_cleanings_oracle": 1,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=15": {
+      "fixed_25pct": {
+        "cost_ratio": 3.3870836458933673,
+        "oracle_cost": 0.8392394278305463,
+        "strategy_cost": 2.8425741409937504,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 1
+      },
+      "fixed_33pct": {
+        "cost_ratio": 2.195528570144575,
+        "oracle_cost": 0.8392394278305463,
+        "strategy_cost": 1.8425741409937504,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 1
+      },
+      "pinn_predicted": {
+        "cost_ratio": 1.003973494395782,
+        "oracle_cost": 0.8392394278305463,
+        "strategy_cost": 0.8425741409937504,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 1,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=20": {
+      "fixed_25pct": {
+        "cost_ratio": 3.3870836458933673,
+        "oracle_cost": 0.8392394278305463,
+        "strategy_cost": 2.8425741409937504,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 1
+      },
+      "fixed_33pct": {
+        "cost_ratio": 2.195528570144575,
+        "oracle_cost": 0.8392394278305463,
+        "strategy_cost": 1.8425741409937504,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 1
+      },
+      "pinn_predicted": {
+        "cost_ratio": 1.003973494395782,
+        "oracle_cost": 0.8392394278305463,
+        "strategy_cost": 0.8425741409937504,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 1,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=30": {
+      "fixed_25pct": {
+        "cost_ratio": 3.3870836458933673,
+        "oracle_cost": 0.8392394278305463,
+        "strategy_cost": 2.8425741409937504,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 1
+      },
+      "fixed_33pct": {
+        "cost_ratio": 2.195528570144575,
+        "oracle_cost": 0.8392394278305463,
+        "strategy_cost": 1.8425741409937504,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 1
+      },
+      "pinn_predicted": {
+        "cost_ratio": 1.003973494395782,
+        "oracle_cost": 0.8392394278305463,
+        "strategy_cost": 0.8425741409937504,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 1,
+        "strategy": "PINN Predicted"
+      }
+    }
+  },
+  "source_003_run3": {
+    "N=5": {
+      "fixed_25pct": {
+        "cost_ratio": 1.005836192395406,
+        "oracle_cost": 2.9277850747159215,
+        "strategy_cost": 2.944872191704362,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 3
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.66428106642803,
+        "oracle_cost": 2.9277850747159215,
+        "strategy_cost": 1.9448721917043619,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 3
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.322725940460654,
+        "oracle_cost": 2.9277850747159215,
+        "strategy_cost": 0.944872191704362,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 3,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=10": {
+      "fixed_25pct": {
+        "cost_ratio": 1.005836192395406,
+        "oracle_cost": 2.9277850747159215,
+        "strategy_cost": 2.944872191704362,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 3
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.66428106642803,
+        "oracle_cost": 2.9277850747159215,
+        "strategy_cost": 1.9448721917043619,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 3
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.322725940460654,
+        "oracle_cost": 2.9277850747159215,
+        "strategy_cost": 0.944872191704362,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 3,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=15": {
+      "fixed_25pct": {
+        "cost_ratio": 1.005836192395406,
+        "oracle_cost": 2.9277850747159215,
+        "strategy_cost": 2.944872191704362,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 3
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.66428106642803,
+        "oracle_cost": 2.9277850747159215,
+        "strategy_cost": 1.9448721917043619,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 3
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.322725940460654,
+        "oracle_cost": 2.9277850747159215,
+        "strategy_cost": 0.944872191704362,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 3,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=20": {
+      "fixed_25pct": {
+        "cost_ratio": 1.005836192395406,
+        "oracle_cost": 2.9277850747159215,
+        "strategy_cost": 2.944872191704362,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 3
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.66428106642803,
+        "oracle_cost": 2.9277850747159215,
+        "strategy_cost": 1.9448721917043619,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 3
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.322725940460654,
+        "oracle_cost": 2.9277850747159215,
+        "strategy_cost": 0.944872191704362,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 3,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=30": {
+      "fixed_25pct": {
+        "cost_ratio": 1.005836192395406,
+        "oracle_cost": 2.9277850747159215,
+        "strategy_cost": 2.944872191704362,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 3
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.66428106642803,
+        "oracle_cost": 2.9277850747159215,
+        "strategy_cost": 1.9448721917043619,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 3
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.322725940460654,
+        "oracle_cost": 2.9277850747159215,
+        "strategy_cost": 0.944872191704362,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 3,
+        "strategy": "PINN Predicted"
+      }
+    }
+  },
+  "source_003_coating_l1": {
+    "N=5": {
+      "fixed_25pct": {
+        "cost_ratio": 0.8820131848014551,
+        "oracle_cost": 10.999646755601308,
+        "strategy_cost": 9.701833466598902,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 8
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.7911011744234151,
+        "oracle_cost": 10.999646755601308,
+        "strategy_cost": 8.701833466598902,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 8
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.7001891640453752,
+        "oracle_cost": 10.999646755601308,
+        "strategy_cost": 7.701833466598903,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 8,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=10": {
+      "fixed_25pct": {
+        "cost_ratio": 0.8820131848014551,
+        "oracle_cost": 10.999646755601308,
+        "strategy_cost": 9.701833466598902,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 8
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.7911011744234151,
+        "oracle_cost": 10.999646755601308,
+        "strategy_cost": 8.701833466598902,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 8
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.7001891640453752,
+        "oracle_cost": 10.999646755601308,
+        "strategy_cost": 7.701833466598903,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 8,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=15": {
+      "fixed_25pct": {
+        "cost_ratio": 0.8820131848014551,
+        "oracle_cost": 10.999646755601308,
+        "strategy_cost": 9.701833466598902,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 8
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.7911011744234151,
+        "oracle_cost": 10.999646755601308,
+        "strategy_cost": 8.701833466598902,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 8
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.7001891640453752,
+        "oracle_cost": 10.999646755601308,
+        "strategy_cost": 7.701833466598903,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 8,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=20": {
+      "fixed_25pct": {
+        "cost_ratio": 0.8820131848014551,
+        "oracle_cost": 10.999646755601308,
+        "strategy_cost": 9.701833466598902,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 8
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.7911011744234151,
+        "oracle_cost": 10.999646755601308,
+        "strategy_cost": 8.701833466598902,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 8
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.7001891640453752,
+        "oracle_cost": 10.999646755601308,
+        "strategy_cost": 7.701833466598903,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 8,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=30": {
+      "fixed_25pct": {
+        "cost_ratio": 0.8820131848014551,
+        "oracle_cost": 10.999646755601308,
+        "strategy_cost": 9.701833466598902,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 8
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.7911011744234151,
+        "oracle_cost": 10.999646755601308,
+        "strategy_cost": 8.701833466598902,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 8
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.7001891640453752,
+        "oracle_cost": 10.999646755601308,
+        "strategy_cost": 7.701833466598903,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 8,
+        "strategy": "PINN Predicted"
+      }
+    }
+  },
+  "source_003_coating_l2": {
+    "N=5": {
+      "fixed_25pct": {
+        "cost_ratio": 0.8361484781669478,
+        "oracle_cost": 10.589365360231374,
+        "strategy_cost": 8.854281730711257,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 8
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.7417141125575105,
+        "oracle_cost": 10.589365360231374,
+        "strategy_cost": 7.854281730711256,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 8
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.5528453813386359,
+        "oracle_cost": 10.589365360231374,
+        "strategy_cost": 5.854281730711256,
+        "n_cleanings_strategy": 0,
+        "n_cleanings_oracle": 8,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=10": {
+      "fixed_25pct": {
+        "cost_ratio": 0.8361484781669478,
+        "oracle_cost": 10.589365360231374,
+        "strategy_cost": 8.854281730711257,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 8
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.7417141125575105,
+        "oracle_cost": 10.589365360231374,
+        "strategy_cost": 7.854281730711256,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 8
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.6472797469480732,
+        "oracle_cost": 10.589365360231374,
+        "strategy_cost": 6.854281730711256,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 8,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=15": {
+      "fixed_25pct": {
+        "cost_ratio": 0.8361484781669478,
+        "oracle_cost": 10.589365360231374,
+        "strategy_cost": 8.854281730711257,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 8
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.7417141125575105,
+        "oracle_cost": 10.589365360231374,
+        "strategy_cost": 7.854281730711256,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 8
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.6472797469480732,
+        "oracle_cost": 10.589365360231374,
+        "strategy_cost": 6.854281730711256,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 8,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=20": {
+      "fixed_25pct": {
+        "cost_ratio": 0.8361484781669478,
+        "oracle_cost": 10.589365360231374,
+        "strategy_cost": 8.854281730711257,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 8
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.7417141125575105,
+        "oracle_cost": 10.589365360231374,
+        "strategy_cost": 7.854281730711256,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 8
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.6472797469480732,
+        "oracle_cost": 10.589365360231374,
+        "strategy_cost": 6.854281730711256,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 8,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=30": {
+      "fixed_25pct": {
+        "cost_ratio": 0.8361484781669478,
+        "oracle_cost": 10.589365360231374,
+        "strategy_cost": 8.854281730711257,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 8
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.7417141125575105,
+        "oracle_cost": 10.589365360231374,
+        "strategy_cost": 7.854281730711256,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 8
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.6472797469480732,
+        "oracle_cost": 10.589365360231374,
+        "strategy_cost": 6.854281730711256,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 8,
+        "strategy": "PINN Predicted"
+      }
+    }
+  },
+  "source_003_coating_l3": {
+    "N=5": {
+      "fixed_25pct": {
+        "cost_ratio": 0.8486603492212351,
+        "oracle_cost": 7.369157034682116,
+        "strategy_cost": 6.253911382519446,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 6
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.7129596177408756,
+        "oracle_cost": 7.369157034682116,
+        "strategy_cost": 5.253911382519446,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 6
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.5772588862605161,
+        "oracle_cost": 7.369157034682116,
+        "strategy_cost": 4.253911382519446,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 6,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=10": {
+      "fixed_25pct": {
+        "cost_ratio": 0.8486603492212351,
+        "oracle_cost": 7.369157034682116,
+        "strategy_cost": 6.253911382519446,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 6
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.7129596177408756,
+        "oracle_cost": 7.369157034682116,
+        "strategy_cost": 5.253911382519446,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 6
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.5772588862605161,
+        "oracle_cost": 7.369157034682116,
+        "strategy_cost": 4.253911382519446,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 6,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=15": {
+      "fixed_25pct": {
+        "cost_ratio": 0.8486603492212351,
+        "oracle_cost": 7.369157034682116,
+        "strategy_cost": 6.253911382519446,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 6
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.7129596177408756,
+        "oracle_cost": 7.369157034682116,
+        "strategy_cost": 5.253911382519446,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 6
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.5772588862605161,
+        "oracle_cost": 7.369157034682116,
+        "strategy_cost": 4.253911382519446,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 6,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=20": {
+      "fixed_25pct": {
+        "cost_ratio": 0.8486603492212351,
+        "oracle_cost": 7.369157034682116,
+        "strategy_cost": 6.253911382519446,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 6
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.7129596177408756,
+        "oracle_cost": 7.369157034682116,
+        "strategy_cost": 5.253911382519446,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 6
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.5772588862605161,
+        "oracle_cost": 7.369157034682116,
+        "strategy_cost": 4.253911382519446,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 6,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=30": {
+      "fixed_25pct": {
+        "cost_ratio": 0.8486603492212351,
+        "oracle_cost": 7.369157034682116,
+        "strategy_cost": 6.253911382519446,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 6
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.7129596177408756,
+        "oracle_cost": 7.369157034682116,
+        "strategy_cost": 5.253911382519446,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 6
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.5772588862605161,
+        "oracle_cost": 7.369157034682116,
+        "strategy_cost": 4.253911382519446,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 6,
+        "strategy": "PINN Predicted"
+      }
+    }
+  },
+  "source_003_coating_ref": {
+    "N=5": {
+      "fixed_25pct": {
+        "cost_ratio": 0.82332022747247,
+        "oracle_cost": 13.247749774693448,
+        "strategy_cost": 10.907140357998973,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 9
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.7478357099500865,
+        "oracle_cost": 13.247749774693448,
+        "strategy_cost": 9.907140357998973,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 9
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.6723511924277029,
+        "oracle_cost": 13.247749774693448,
+        "strategy_cost": 8.907140357998973,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 9,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=10": {
+      "fixed_25pct": {
+        "cost_ratio": 0.82332022747247,
+        "oracle_cost": 13.247749774693448,
+        "strategy_cost": 10.907140357998973,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 9
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.7478357099500865,
+        "oracle_cost": 13.247749774693448,
+        "strategy_cost": 9.907140357998973,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 9
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.6723511924277029,
+        "oracle_cost": 13.247749774693448,
+        "strategy_cost": 8.907140357998973,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 9,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=15": {
+      "fixed_25pct": {
+        "cost_ratio": 0.82332022747247,
+        "oracle_cost": 13.247749774693448,
+        "strategy_cost": 10.907140357998973,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 9
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.7478357099500865,
+        "oracle_cost": 13.247749774693448,
+        "strategy_cost": 9.907140357998973,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 9
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.6723511924277029,
+        "oracle_cost": 13.247749774693448,
+        "strategy_cost": 8.907140357998973,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 9,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=20": {
+      "fixed_25pct": {
+        "cost_ratio": 0.82332022747247,
+        "oracle_cost": 13.247749774693448,
+        "strategy_cost": 10.907140357998973,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 9
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.7478357099500865,
+        "oracle_cost": 13.247749774693448,
+        "strategy_cost": 9.907140357998973,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 9
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.6723511924277029,
+        "oracle_cost": 13.247749774693448,
+        "strategy_cost": 8.907140357998973,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 9,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=30": {
+      "fixed_25pct": {
+        "cost_ratio": 0.82332022747247,
+        "oracle_cost": 13.247749774693448,
+        "strategy_cost": 10.907140357998973,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 9
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.7478357099500865,
+        "oracle_cost": 13.247749774693448,
+        "strategy_cost": 9.907140357998973,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 9
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.6723511924277029,
+        "oracle_cost": 13.247749774693448,
+        "strategy_cost": 8.907140357998973,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 9,
+        "strategy": "PINN Predicted"
+      }
+    }
+  },
+  "source_003_fig11_ref": {
+    "N=5": {
+      "fixed_25pct": {
+        "cost_ratio": 0.3169779975272185,
+        "oracle_cost": 10.11447913537989,
+        "strategy_cost": 3.20606734236355,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 10
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.21810983174080098,
+        "oracle_cost": 10.11447913537989,
+        "strategy_cost": 2.20606734236355,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 10
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.11924166595438343,
+        "oracle_cost": 10.11447913537989,
+        "strategy_cost": 1.2060673423635497,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 10,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=10": {
+      "fixed_25pct": {
+        "cost_ratio": 0.3169779975272185,
+        "oracle_cost": 10.11447913537989,
+        "strategy_cost": 3.20606734236355,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 10
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.21810983174080098,
+        "oracle_cost": 10.11447913537989,
+        "strategy_cost": 2.20606734236355,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 10
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.11924166595438343,
+        "oracle_cost": 10.11447913537989,
+        "strategy_cost": 1.2060673423635497,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 10,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=15": {
+      "fixed_25pct": {
+        "cost_ratio": 0.3169779975272185,
+        "oracle_cost": 10.11447913537989,
+        "strategy_cost": 3.20606734236355,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 10
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.21810983174080098,
+        "oracle_cost": 10.11447913537989,
+        "strategy_cost": 2.20606734236355,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 10
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.11924166595438343,
+        "oracle_cost": 10.11447913537989,
+        "strategy_cost": 1.2060673423635497,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 10,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=20": {
+      "fixed_25pct": {
+        "cost_ratio": 0.3169779975272185,
+        "oracle_cost": 10.11447913537989,
+        "strategy_cost": 3.20606734236355,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 10
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.21810983174080098,
+        "oracle_cost": 10.11447913537989,
+        "strategy_cost": 2.20606734236355,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 10
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.11924166595438343,
+        "oracle_cost": 10.11447913537989,
+        "strategy_cost": 1.2060673423635497,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 10,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=30": {
+      "fixed_25pct": {
+        "cost_ratio": 0.3169779975272185,
+        "oracle_cost": 10.11447913537989,
+        "strategy_cost": 3.20606734236355,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 10
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.21810983174080098,
+        "oracle_cost": 10.11447913537989,
+        "strategy_cost": 2.20606734236355,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 10
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.11924166595438343,
+        "oracle_cost": 10.11447913537989,
+        "strategy_cost": 1.2060673423635497,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 10,
+        "strategy": "PINN Predicted"
+      }
+    }
+  },
+  "source_003_fig11_grit80": {
+    "N=5": {
+      "fixed_25pct": {
+        "cost_ratio": 0.3154118454148792,
+        "oracle_cost": 10.09844486471427,
+        "strategy_cost": 3.1851691305999386,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 10
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.2163866971473302,
+        "oracle_cost": 10.09844486471427,
+        "strategy_cost": 2.1851691305999386,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 10
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.1173615488797811,
+        "oracle_cost": 10.09844486471427,
+        "strategy_cost": 1.1851691305999383,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 10,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=10": {
+      "fixed_25pct": {
+        "cost_ratio": 0.3154118454148792,
+        "oracle_cost": 10.09844486471427,
+        "strategy_cost": 3.1851691305999386,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 10
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.2163866971473302,
+        "oracle_cost": 10.09844486471427,
+        "strategy_cost": 2.1851691305999386,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 10
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.1173615488797811,
+        "oracle_cost": 10.09844486471427,
+        "strategy_cost": 1.1851691305999383,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 10,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=15": {
+      "fixed_25pct": {
+        "cost_ratio": 0.3154118454148792,
+        "oracle_cost": 10.09844486471427,
+        "strategy_cost": 3.1851691305999386,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 10
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.2163866971473302,
+        "oracle_cost": 10.09844486471427,
+        "strategy_cost": 2.1851691305999386,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 10
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.1173615488797811,
+        "oracle_cost": 10.09844486471427,
+        "strategy_cost": 1.1851691305999383,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 10,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=20": {
+      "fixed_25pct": {
+        "cost_ratio": 0.3154118454148792,
+        "oracle_cost": 10.09844486471427,
+        "strategy_cost": 3.1851691305999386,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 10
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.2163866971473302,
+        "oracle_cost": 10.09844486471427,
+        "strategy_cost": 2.1851691305999386,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 10
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.1173615488797811,
+        "oracle_cost": 10.09844486471427,
+        "strategy_cost": 1.1851691305999383,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 10,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=30": {
+      "fixed_25pct": {
+        "cost_ratio": 0.3154118454148792,
+        "oracle_cost": 10.09844486471427,
+        "strategy_cost": 3.1851691305999386,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 10
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.2163866971473302,
+        "oracle_cost": 10.09844486471427,
+        "strategy_cost": 2.1851691305999386,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 10
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.1173615488797811,
+        "oracle_cost": 10.09844486471427,
+        "strategy_cost": 1.1851691305999383,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 10,
+        "strategy": "PINN Predicted"
+      }
+    }
+  },
+  "source_003_fig11_grit220": {
+    "N=5": {
+      "fixed_25pct": {
+        "cost_ratio": 0.34649643530948,
+        "oracle_cost": 9.083481615267143,
+        "strategy_cost": 3.147393999889262,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 9
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.2364064893663692,
+        "oracle_cost": 9.083481615267143,
+        "strategy_cost": 2.147393999889262,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 9
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.1263165434232585,
+        "oracle_cost": 9.083481615267143,
+        "strategy_cost": 1.1473939998892622,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 9,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=10": {
+      "fixed_25pct": {
+        "cost_ratio": 0.34649643530948,
+        "oracle_cost": 9.083481615267143,
+        "strategy_cost": 3.147393999889262,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 9
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.2364064893663692,
+        "oracle_cost": 9.083481615267143,
+        "strategy_cost": 2.147393999889262,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 9
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.1263165434232585,
+        "oracle_cost": 9.083481615267143,
+        "strategy_cost": 1.1473939998892622,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 9,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=15": {
+      "fixed_25pct": {
+        "cost_ratio": 0.34649643530948,
+        "oracle_cost": 9.083481615267143,
+        "strategy_cost": 3.147393999889262,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 9
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.2364064893663692,
+        "oracle_cost": 9.083481615267143,
+        "strategy_cost": 2.147393999889262,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 9
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.1263165434232585,
+        "oracle_cost": 9.083481615267143,
+        "strategy_cost": 1.1473939998892622,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 9,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=20": {
+      "fixed_25pct": {
+        "cost_ratio": 0.34649643530948,
+        "oracle_cost": 9.083481615267143,
+        "strategy_cost": 3.147393999889262,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 9
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.2364064893663692,
+        "oracle_cost": 9.083481615267143,
+        "strategy_cost": 2.147393999889262,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 9
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.1263165434232585,
+        "oracle_cost": 9.083481615267143,
+        "strategy_cost": 1.1473939998892622,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 9,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=30": {
+      "fixed_25pct": {
+        "cost_ratio": 0.34649643530948,
+        "oracle_cost": 9.083481615267143,
+        "strategy_cost": 3.147393999889262,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 9
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.2364064893663692,
+        "oracle_cost": 9.083481615267143,
+        "strategy_cost": 2.147393999889262,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 9
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.1263165434232585,
+        "oracle_cost": 9.083481615267143,
+        "strategy_cost": 1.1473939998892622,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 9,
+        "strategy": "PINN Predicted"
+      }
+    }
+  },
+  "source_003_fig11_diapro": {
+    "N=5": {
+      "fixed_25pct": {
+        "cost_ratio": 0.34220834709318043,
+        "oracle_cost": 9.04944440256752,
+        "strategy_cost": 3.0967954111142646,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 9
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.23170432546326922,
+        "oracle_cost": 9.04944440256752,
+        "strategy_cost": 2.0967954111142646,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 9
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.12120030383335806,
+        "oracle_cost": 9.04944440256752,
+        "strategy_cost": 1.0967954111142648,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 9,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=10": {
+      "fixed_25pct": {
+        "cost_ratio": 0.34220834709318043,
+        "oracle_cost": 9.04944440256752,
+        "strategy_cost": 3.0967954111142646,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 9
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.23170432546326922,
+        "oracle_cost": 9.04944440256752,
+        "strategy_cost": 2.0967954111142646,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 9
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.12120030383335806,
+        "oracle_cost": 9.04944440256752,
+        "strategy_cost": 1.0967954111142648,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 9,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=15": {
+      "fixed_25pct": {
+        "cost_ratio": 0.34220834709318043,
+        "oracle_cost": 9.04944440256752,
+        "strategy_cost": 3.0967954111142646,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 9
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.23170432546326922,
+        "oracle_cost": 9.04944440256752,
+        "strategy_cost": 2.0967954111142646,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 9
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.12120030383335806,
+        "oracle_cost": 9.04944440256752,
+        "strategy_cost": 1.0967954111142648,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 9,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=20": {
+      "fixed_25pct": {
+        "cost_ratio": 0.34220834709318043,
+        "oracle_cost": 9.04944440256752,
+        "strategy_cost": 3.0967954111142646,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 9
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.23170432546326922,
+        "oracle_cost": 9.04944440256752,
+        "strategy_cost": 2.0967954111142646,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 9
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.12120030383335806,
+        "oracle_cost": 9.04944440256752,
+        "strategy_cost": 1.0967954111142648,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 9,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=30": {
+      "fixed_25pct": {
+        "cost_ratio": 0.34220834709318043,
+        "oracle_cost": 9.04944440256752,
+        "strategy_cost": 3.0967954111142646,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 9
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.23170432546326922,
+        "oracle_cost": 9.04944440256752,
+        "strategy_cost": 2.0967954111142646,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 9
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.12120030383335806,
+        "oracle_cost": 9.04944440256752,
+        "strategy_cost": 1.0967954111142648,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 9,
+        "strategy": "PINN Predicted"
+      }
+    }
+  },
+  "source_003_fig13_flat": {
+    "N=5": {
+      "fixed_25pct": {
+        "cost_ratio": 0.7795268755961806,
+        "oracle_cost": 4.036406712704446,
+        "strategy_cost": 3.146487513389947,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 4
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.531781771800635,
+        "oracle_cost": 4.036406712704446,
+        "strategy_cost": 2.146487513389947,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 4
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.2840366680050894,
+        "oracle_cost": 4.036406712704446,
+        "strategy_cost": 1.146487513389947,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 4,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=10": {
+      "fixed_25pct": {
+        "cost_ratio": 0.7795268755961806,
+        "oracle_cost": 4.036406712704446,
+        "strategy_cost": 3.146487513389947,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 4
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.531781771800635,
+        "oracle_cost": 4.036406712704446,
+        "strategy_cost": 2.146487513389947,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 4
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.2840366680050894,
+        "oracle_cost": 4.036406712704446,
+        "strategy_cost": 1.146487513389947,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 4,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=15": {
+      "fixed_25pct": {
+        "cost_ratio": 0.7795268755961806,
+        "oracle_cost": 4.036406712704446,
+        "strategy_cost": 3.146487513389947,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 4
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.531781771800635,
+        "oracle_cost": 4.036406712704446,
+        "strategy_cost": 2.146487513389947,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 4
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.2840366680050894,
+        "oracle_cost": 4.036406712704446,
+        "strategy_cost": 1.146487513389947,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 4,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=20": {
+      "fixed_25pct": {
+        "cost_ratio": 0.7795268755961806,
+        "oracle_cost": 4.036406712704446,
+        "strategy_cost": 3.146487513389947,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 4
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.531781771800635,
+        "oracle_cost": 4.036406712704446,
+        "strategy_cost": 2.146487513389947,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 4
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.2840366680050894,
+        "oracle_cost": 4.036406712704446,
+        "strategy_cost": 1.146487513389947,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 4,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=30": {
+      "fixed_25pct": {
+        "cost_ratio": 0.7795268755961806,
+        "oracle_cost": 4.036406712704446,
+        "strategy_cost": 3.146487513389947,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 4
+      },
+      "fixed_33pct": {
+        "cost_ratio": 0.531781771800635,
+        "oracle_cost": 4.036406712704446,
+        "strategy_cost": 2.146487513389947,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 4
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.2840366680050894,
+        "oracle_cost": 4.036406712704446,
+        "strategy_cost": 1.146487513389947,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 4,
+        "strategy": "PINN Predicted"
+      }
+    }
+  },
+  "source_003_fig13_pat1": {
+    "N=5": {
+      "fixed_25pct": {
+        "cost_ratio": 1.6908540114587602,
+        "oracle_cost": 1.4616322391844316,
+        "strategy_cost": 2.4714067349024464,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 2
+      },
+      "fixed_33pct": {
+        "cost_ratio": 1.0066873837727257,
+        "oracle_cost": 1.4616322391844316,
+        "strategy_cost": 1.4714067349024464,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 2
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.32252075608669123,
+        "oracle_cost": 1.4616322391844316,
+        "strategy_cost": 0.47140673490244644,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 2,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=10": {
+      "fixed_25pct": {
+        "cost_ratio": 1.6908540114587602,
+        "oracle_cost": 1.4616322391844316,
+        "strategy_cost": 2.4714067349024464,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 2
+      },
+      "fixed_33pct": {
+        "cost_ratio": 1.0066873837727257,
+        "oracle_cost": 1.4616322391844316,
+        "strategy_cost": 1.4714067349024464,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 2
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.32252075608669123,
+        "oracle_cost": 1.4616322391844316,
+        "strategy_cost": 0.47140673490244644,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 2,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=15": {
+      "fixed_25pct": {
+        "cost_ratio": 1.6908540114587602,
+        "oracle_cost": 1.4616322391844316,
+        "strategy_cost": 2.4714067349024464,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 2
+      },
+      "fixed_33pct": {
+        "cost_ratio": 1.0066873837727257,
+        "oracle_cost": 1.4616322391844316,
+        "strategy_cost": 1.4714067349024464,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 2
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.32252075608669123,
+        "oracle_cost": 1.4616322391844316,
+        "strategy_cost": 0.47140673490244644,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 2,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=20": {
+      "fixed_25pct": {
+        "cost_ratio": 1.6908540114587602,
+        "oracle_cost": 1.4616322391844316,
+        "strategy_cost": 2.4714067349024464,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 2
+      },
+      "fixed_33pct": {
+        "cost_ratio": 1.0066873837727257,
+        "oracle_cost": 1.4616322391844316,
+        "strategy_cost": 1.4714067349024464,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 2
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.32252075608669123,
+        "oracle_cost": 1.4616322391844316,
+        "strategy_cost": 0.47140673490244644,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 2,
+        "strategy": "PINN Predicted"
+      }
+    }
+  },
+  "source_003_fig13_pat2": {
+    "N=5": {
+      "fixed_25pct": {
+        "cost_ratio": 1.7022313513609106,
+        "oracle_cost": 1.4300100413070802,
+        "strategy_cost": 2.4342079250738227,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 2
+      },
+      "fixed_33pct": {
+        "cost_ratio": 1.0029355624404606,
+        "oracle_cost": 1.4300100413070802,
+        "strategy_cost": 1.4342079250738227,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 2
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.3036397735200105,
+        "oracle_cost": 1.4300100413070802,
+        "strategy_cost": 0.43420792507382266,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 2,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=10": {
+      "fixed_25pct": {
+        "cost_ratio": 1.7022313513609106,
+        "oracle_cost": 1.4300100413070802,
+        "strategy_cost": 2.4342079250738227,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 2
+      },
+      "fixed_33pct": {
+        "cost_ratio": 1.0029355624404606,
+        "oracle_cost": 1.4300100413070802,
+        "strategy_cost": 1.4342079250738227,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 2
+      },
+      "pinn_predicted": {
+        "cost_ratio": -0.39565601540043954,
+        "oracle_cost": 1.4300100413070802,
+        "strategy_cost": -0.5657920749261773,
+        "n_cleanings_strategy": 0,
+        "n_cleanings_oracle": 2,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=15": {
+      "fixed_25pct": {
+        "cost_ratio": 1.7022313513609106,
+        "oracle_cost": 1.4300100413070802,
+        "strategy_cost": 2.4342079250738227,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 2
+      },
+      "fixed_33pct": {
+        "cost_ratio": 1.0029355624404606,
+        "oracle_cost": 1.4300100413070802,
+        "strategy_cost": 1.4342079250738227,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 2
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.3036397735200105,
+        "oracle_cost": 1.4300100413070802,
+        "strategy_cost": 0.43420792507382266,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 2,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=20": {
+      "fixed_25pct": {
+        "cost_ratio": 1.7022313513609106,
+        "oracle_cost": 1.4300100413070802,
+        "strategy_cost": 2.4342079250738227,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 2
+      },
+      "fixed_33pct": {
+        "cost_ratio": 1.0029355624404606,
+        "oracle_cost": 1.4300100413070802,
+        "strategy_cost": 1.4342079250738227,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 2
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.3036397735200105,
+        "oracle_cost": 1.4300100413070802,
+        "strategy_cost": 0.43420792507382266,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 2,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=30": {
+      "fixed_25pct": {
+        "cost_ratio": 1.7022313513609106,
+        "oracle_cost": 1.4300100413070802,
+        "strategy_cost": 2.4342079250738227,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 2
+      },
+      "fixed_33pct": {
+        "cost_ratio": 1.0029355624404606,
+        "oracle_cost": 1.4300100413070802,
+        "strategy_cost": 1.4342079250738227,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 2
+      },
+      "pinn_predicted": {
+        "cost_ratio": 0.3036397735200105,
+        "oracle_cost": 1.4300100413070802,
+        "strategy_cost": 0.43420792507382266,
+        "n_cleanings_strategy": 1,
+        "n_cleanings_oracle": 2,
+        "strategy": "PINN Predicted"
+      }
+    }
+  },
+  "source_003_fig13_pat3": {
+    "N=5": {
+      "fixed_25pct": {
+        "cost_ratio": 1.0,
+        "oracle_cost": -0.8044271937456302,
+        "strategy_cost": 2.19557280625437,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 0
+      },
+      "fixed_33pct": {
+        "cost_ratio": 1.0,
+        "oracle_cost": -0.8044271937456302,
+        "strategy_cost": 1.1955728062543698,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 0
+      },
+      "pinn_predicted": {
+        "cost_ratio": 1.0,
+        "oracle_cost": -0.8044271937456302,
+        "strategy_cost": -0.8044271937456302,
+        "n_cleanings_strategy": 0,
+        "n_cleanings_oracle": 0,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=10": {
+      "fixed_25pct": {
+        "cost_ratio": 1.0,
+        "oracle_cost": -0.8044271937456302,
+        "strategy_cost": 2.19557280625437,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 0
+      },
+      "fixed_33pct": {
+        "cost_ratio": 1.0,
+        "oracle_cost": -0.8044271937456302,
+        "strategy_cost": 1.1955728062543698,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 0
+      },
+      "pinn_predicted": {
+        "cost_ratio": 1.0,
+        "oracle_cost": -0.8044271937456302,
+        "strategy_cost": -0.8044271937456302,
+        "n_cleanings_strategy": 0,
+        "n_cleanings_oracle": 0,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=15": {
+      "fixed_25pct": {
+        "cost_ratio": 1.0,
+        "oracle_cost": -0.8044271937456302,
+        "strategy_cost": 2.19557280625437,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 0
+      },
+      "fixed_33pct": {
+        "cost_ratio": 1.0,
+        "oracle_cost": -0.8044271937456302,
+        "strategy_cost": 1.1955728062543698,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 0
+      },
+      "pinn_predicted": {
+        "cost_ratio": 1.0,
+        "oracle_cost": -0.8044271937456302,
+        "strategy_cost": -0.8044271937456302,
+        "n_cleanings_strategy": 0,
+        "n_cleanings_oracle": 0,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=20": {
+      "fixed_25pct": {
+        "cost_ratio": 1.0,
+        "oracle_cost": -0.8044271937456302,
+        "strategy_cost": 2.19557280625437,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 0
+      },
+      "fixed_33pct": {
+        "cost_ratio": 1.0,
+        "oracle_cost": -0.8044271937456302,
+        "strategy_cost": 1.1955728062543698,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 0
+      },
+      "pinn_predicted": {
+        "cost_ratio": 1.0,
+        "oracle_cost": -0.8044271937456302,
+        "strategy_cost": -0.8044271937456302,
+        "n_cleanings_strategy": 0,
+        "n_cleanings_oracle": 0,
+        "strategy": "PINN Predicted"
+      }
+    },
+    "N=30": {
+      "fixed_25pct": {
+        "cost_ratio": 1.0,
+        "oracle_cost": -0.8044271937456302,
+        "strategy_cost": 2.19557280625437,
+        "n_cleanings_strategy": 3,
+        "n_cleanings_oracle": 0
+      },
+      "fixed_33pct": {
+        "cost_ratio": 1.0,
+        "oracle_cost": -0.8044271937456302,
+        "strategy_cost": 1.1955728062543698,
+        "n_cleanings_strategy": 2,
+        "n_cleanings_oracle": 0
+      },
+      "pinn_predicted": {
+        "cost_ratio": 1.0,
+        "oracle_cost": -0.8044271937456302,
+        "strategy_cost": -0.8044271937456302,
+        "n_cleanings_strategy": 0,
+        "n_cleanings_oracle": 0,
+        "strategy": "PINN Predicted"
+      }
+    }
+  }
+}

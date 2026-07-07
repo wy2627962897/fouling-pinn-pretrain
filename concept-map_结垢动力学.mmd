@@ -1,0 +1,63 @@
+graph TD
+  %% 核心方程
+  Core["Kern-Seaton 结垢动力学<br/>dRf/dt = φd − φr"] -->|"沉积项"| Phi_d["沉积速率 φd<br/>污垢物质到达壁面并附着"]
+  Core -->|"剥离项"| Phi_r["剥离速率 φr<br/>已沉积物质被流体带走"]
+  Core -->|"积分得到"| Rf_curve["Rf(t) = Rf,∞·(1 − e^(−t/τ))<br/>指数趋近曲线"]
+
+  %% φd 的控制因素
+  Phi_d -->|"受...控制"| Temp["壁温 Tw"]
+  Phi_d -->|"受...控制"| Conc["过饱和度"]
+  Phi_d -->|"受...控制"| MassTrans["物质传递<br/>（低流速时增强）"]
+  Phi_d -->|"受...控制"| Rough["壁面粗糙度<br/>提供附着点"]
+
+  Temp -->|"Arrhenius效应<br/>exp(−Ea/RTw)"| TempEff["温度↑ → φd 指数级↑"]
+
+  %% φr 的控制因素
+  Phi_r -->|"受...控制"| Shear["壁面剪切应力 τs"]
+  Phi_r -->|"受...控制"| Thick["当前污垢厚度"]
+  Phi_r -->|"受...控制"| Strength["沉积物强度<br/>（晶体结构决定）"]
+
+  Shear -->|"流速↑ → τs↑"| ShearEff["流速↑ → φr↑"]
+  Thick -->|"越厚越易被刮走"| ThickEff["φr ∝ Rf"]
+
+  %% 流速双重角色（跨簇连接）
+  Flow["流速 ⚡"] -->|"低流速区：增强传质"| MassTrans
+  Flow -->|"高流速区：增强剪切"| Shear
+  Flow -->|"核心矛盾"| DualRole["流速同向影响 φd 和 φr<br/>净效果取决于处于哪个区"]
+
+  %% Rf(t) 曲线特征
+  Rf_curve -->|"t=0时"| Start["Rf=0, 净增长=φd<br/>增长最快"]
+  Rf_curve -->|"t→∞时"| Asym["Rf→Rf,∞<br/>净增长→0, 趋于平坦"]
+  Rf_curve -->|"中间"| SlowDown["净增长逐渐减小<br/>φd − K·Rf 越来越小"]
+
+  %% 参数关系
+  Asym -->|"定义"| Rinf["Rf,∞ = φd / K"]
+  Rf_curve -->|"时间常数"| Tau["τ = 1/K"]
+
+  %% 工况对参数的影响
+  TempUp["壁温↑"] -->|"影响"| TempEff1["Rf,∞ ↑<br/>τ ↓"]
+  FlowUp["流速↑"] -->|"影响"| FlowEff["Rf,∞ ↓<br/>τ ↓"]
+  ConcUp["浓度↑"] -->|"影响"| ConcEff["Rf,∞ ↑"]
+
+  Rinf --> TempEff1
+  Rinf --> FlowEff
+  Rinf --> ConcEff
+
+  %% 模型局限
+  Rf_curve -->|"前提假设"| Assumption["φd 和 K 是常数<br/>适用于恒定工况"]
+  Assumption -->|"实际问题"| Limitation["工业现场工况波动<br/>温度、流速、水质实时变化"]
+  Limitation -->|"需要"| AI["引入 AI（PINN）<br/>物理方程 + 数据驱动"]
+
+  %% 样式
+  classDef core fill:#e8eaf6,stroke:#283593
+  classDef deposit fill:#fff3e0,stroke:#e65100
+  classDef removal fill:#e8f5e9,stroke:#2e7d32
+  classDef curve fill:#fce4ec,stroke:#c62828
+  classDef limit fill:#f3e5f5,stroke:#6a1b9a
+
+  class Core core
+  class Phi_d,Temp,Conc,MassTrans,Rough,TempEff deposit
+  class Phi_r,Shear,Thick,Strength,ShearEff,ThickEff removal
+  class Rf_curve,Start,Asym,SlowDown,Rinf,Tau curve
+  class Flow,DualRole,FlowEff,TempEff1,ConcEff,TempUp,FlowUp,ConcUp curve
+  class Assumption,Limitation,AI limit

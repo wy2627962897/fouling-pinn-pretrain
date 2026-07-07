@@ -1,0 +1,31 @@
+# LaTeX aux files only
+*.aux
+*.log
+*.out
+*.synctex*
+*.toc
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Claude skills (not project)
+.claude/
+
+# Obsidian metadata
+.obsidian/
+.smart-env/
+
+# Source PDFs (copyright)
+提取真实数据/*.pdf
+
+# Graphify output
+graphify-out/
+
+# Temp
+*.bak
+*.swp

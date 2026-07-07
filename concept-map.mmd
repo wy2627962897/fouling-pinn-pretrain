@@ -1,0 +1,54 @@
+graph TD
+  %% 中心概念
+  HX["🔧 换热器"] -->|"传热靠"| R_total["总热阻 R_total<br/>Q = ΔT / R_total"]
+
+  %% 第1簇：5层热阻结构
+  R_total -->|"串联组成"| FiveLayers["5层热阻串联"]
+  FiveLayers -->|"① 管内对流"| R1["1/(hi·Ai)"]
+  FiveLayers -->|"② 管内污垢"| R2["Rf,i ⚠️"]
+  FiveLayers -->|"③ 管壁导热"| R3["δw/(kw·Am)"]
+  FiveLayers -->|"④ 管外污垢"| R4["Rf,o ⚠️"]
+  FiveLayers -->|"⑤ 管外对流"| R5["1/(ho·Ao)"]
+
+  R1 -->|"基本不变"| Fixed["4层固定热阻<br/>制造/运行初期确定"]
+  R3 -->|"基本不变"| Fixed
+  R5 -->|"基本不变"| Fixed
+
+  R2 -->|"唯一持续增长"| Rf_growth["污垢热阻 Rf(t)<br/>从 0 开始，随时间增大"]
+  R4 -->|"唯一持续增长"| Rf_growth
+
+  %% 第2簇：Rf 增长的后果链
+  Rf_growth -->|"导致"| R_rise["R_total 持续上升"]
+  R_rise -->|"Q不变，只能"| DeltaT["增大传热温差 ΔT"]
+  DeltaT -->|"意味着"| Energy["多烧燃料 / 多耗电<br/>能耗成本上升 ↑"]
+
+  %% 第3簇：清洗决策优化
+  Energy -->|"触发问题"| Decision{"何时停机清洗？"}
+  Decision -->|"太频繁"| Frequent["清洗停机费用高<br/>但能耗损失小"]
+  Decision -->|"太不频繁"| Infrequent["清洗停机费用低<br/>但能耗损失持续累积"]
+  Frequent -->|"两者权衡"| Optimum["最优清洗周期"]
+  Infrequent -->|"两者权衡"| Optimum
+  Optimum -->|"数学本质"| MinCost["min { 能耗损失(t) + 清洗费用(t) }"]
+
+  %% 第4簇：预测是前提
+  Optimum -->|"前提条件"| Prediction["必须知道 Rf(t) 怎么长"]
+  Prediction -->|"若不知道"| Blind["清洗决策 = 盲猜<br/>要么浪费钱，要么损坏设备"]
+  Rf_growth -->|"画出"| Curve["Rf(t) 演化曲线"]
+  Curve -->|"标注"| Threshold["清洗阈值<br/>到达此值必须清洗"]
+  Threshold -->|"输入"| Decision
+
+  %% 第5簇：Rf 由什么决定
+  Rf_growth -->|"由...控制"| Mechanism["结垢动力学<br/>dRf/dt = φd − φr"]
+  Mechanism -->|"沉积项 φd"| Deposit["受温度、浓度驱动<br/>壁温↑ → 结晶↑ → φd↑"]
+  Mechanism -->|"剥离项 φr"| Removal["受剪切力驱动<br/>流速↑ → 剪切↑ → φr↑"]
+
+  %% 样式
+  classDef fixed fill:#e8f5e9,stroke:#2e7d32
+  classDef variable fill:#fff3e0,stroke:#e65100
+  classDef decision fill:#e3f2fd,stroke:#1565c0
+  classDef cost fill:#fce4ec,stroke:#c62828
+
+  class R1,R3,R5,Fixed fixed
+  class R2,R4,Rf_growth,R_rise,DeltaT variable
+  class Decision,Optimum,Prediction decision
+  class Energy,Frequent,Infrequent,MinCost,Blind cost

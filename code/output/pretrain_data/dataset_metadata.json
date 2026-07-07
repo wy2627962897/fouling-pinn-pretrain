@@ -1,0 +1,26 @@
+{
+  "n_id_per_ode": 200,
+  "n_ood1_per_ode": 100,
+  "n_ood2_per_ode": 100,
+  "duration_h": 120,
+  "n_points": 60,
+  "noise_std": 2e-06,
+  "ks_in_domain": {
+    "A_range": "(2e-06, 5e-05)",
+    "Ea_range": "(38000, 52000)",
+    "Tw_range": "(340, 380)",
+    "B_range": "(1e-09, 5e-08)",
+    "v_range": "(0.8, 2.5)",
+    "rho": "1000.0",
+    "f": "0.005"
+  },
+  "ks_ood1": {
+    "A_range": "(5e-05, 0.0001)",
+    "Ea_range": "(52000, 60000)",
+    "Tw_range": "(320, 340)",
+    "B_range": "(5e-08, 1e-07)",
+    "v_range": "(2.5, 4.0)",
+    "rho": "1000.0",
+    "f": "0.005"
+  }
+}

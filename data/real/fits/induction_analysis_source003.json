@@ -1,0 +1,227 @@
+{
+  "source_003_fig4_unmodified_run1": {
+    "label": "Fig.4 Unmodified SS run1",
+    "rf_min": -0.0214159292035398,
+    "rf_max": 0.0192920353982299,
+    "rf_init": 0.0118584070796459,
+    "rf_final": 0.0192920353982299,
+    "t_range": [
+      0.0604017418176709,
+      17.804466919511164
+    ],
+    "t_cross_zero": 13.428618251627112,
+    "t_at_min": 2.1644425715222155,
+    "trend": "cross_to_positive",
+    "induction_time": 13.428618251627112
+  },
+  "source_003_fig4_unmodified_run2": {
+    "label": "Fig.4 Unmodified SS run2",
+    "rf_min": -0.0228318584070796,
+    "rf_max": 0.0164601769911503,
+    "rf_init": 0.0072566371681415,
+    "rf_final": 0.0161061946902654,
+    "t_range": [
+      0.02987310951913,
+      17.710071639275178
+    ],
+    "t_cross_zero": 14.603221426230295,
+    "t_at_min": 1.6568806480310911,
+    "trend": "cross_to_positive",
+    "induction_time": 14.603221426230295
+  },
+  "source_003_fig4_unmodified_run3": {
+    "label": "Fig.4 Unmodified SS run3",
+    "rf_min": -0.0146902654867256,
+    "rf_max": 0.0192920353982299,
+    "rf_init": 0.0040707964601769,
+    "rf_final": 0.0192920353982299,
+    "t_range": [
+      0.0624619562672634,
+      17.93145104649529
+    ],
+    "t_cross_zero": 11.317507140516012,
+    "t_at_min": 2.1309172636606206,
+    "trend": "cross_to_positive",
+    "induction_time": 11.317507140516012
+  },
+  "source_003_fig5_ref": {
+    "label": "Fig.5 Reference (uncoated)",
+    "rf_min": -0.0131315656392667,
+    "rf_max": 0.1992819797434354,
+    "rf_init": -0.0109196652907079,
+    "rf_final": 0.1992819797434354,
+    "t_range": [
+      1.5226076989464588,
+      83.73999836688998
+    ],
+    "t_cross_zero": 12.167390182418421,
+    "t_at_min": 2.8269668983317477,
+    "trend": "cross_to_positive",
+    "induction_time": 12.167390182418421
+  },
+  "source_003_fig5_coating_l1": {
+    "label": "Fig.5 Coating L1",
+    "rf_min": -0.0320945945945945,
+    "rf_max": 0.2336038687809403,
+    "rf_init": -0.0126689189189188,
+    "rf_final": 0.2335273555499399,
+    "t_range": [
+      0.5590682196339429,
+      83.46510553829516
+    ],
+    "t_cross_zero": 29.59557603457762,
+    "t_at_min": 12.019966722129787,
+    "trend": "cross_to_positive",
+    "induction_time": 29.59557603457762
+  },
+  "source_003_fig5_coating_l2": {
+    "label": "Fig.5 Coating L2",
+    "rf_min": -0.0421625679491453,
+    "rf_max": 0.2297224163333231,
+    "rf_init": -0.0273409126622272,
+    "rf_final": 0.2297224163333231,
+    "t_range": [
+      0.0,
+      83.40707260781404
+    ],
+    "t_cross_zero": 32.14642262895174,
+    "t_at_min": 13.477391378058236,
+    "trend": "cross_to_positive",
+    "induction_time": 32.14642262895174
+  },
+  "source_003_fig5_coating_l3": {
+    "label": "Fig.5 Coating L3",
+    "rf_min": -0.0295608108108107,
+    "rf_max": 0.1528716216216218,
+    "rf_init": -0.0175485347979025,
+    "rf_final": 0.1528716216216218,
+    "t_range": [
+      0.2293023910813829,
+      83.0216306156406
+    ],
+    "t_cross_zero": 35.93933057404989,
+    "t_at_min": 20.12645590682196,
+    "trend": "cross_to_positive",
+    "induction_time": 35.93933057404989
+  },
+  "source_003_fig11_ref": {
+    "label": "Fig.11 Reference",
+    "rf_min": -0.0039590284175349,
+    "rf_max": 0.0327145247611509,
+    "rf_init": -0.0001767629431886,
+    "rf_final": 0.0327145247611509,
+    "t_range": [
+      0.0512118970006438,
+      11.921164830656508
+    ],
+    "t_cross_zero": 0.8967652673073324,
+    "t_at_min": 0.2872663417479852,
+    "trend": "cross_to_positive",
+    "induction_time": 0.8967652673073324
+  },
+  "source_003_fig11_grit80": {
+    "label": "Fig.11 Grit 80",
+    "rf_min": -0.0056022408963585,
+    "rf_max": 0.0301068257062025,
+    "rf_init": -0.0005179267006122,
+    "rf_final": 0.0301068257062025,
+    "t_range": [
+      0.0512118970006438,
+      11.93335285162114
+    ],
+    "t_cross_zero": 1.2593703148425783,
+    "t_at_min": 0.395802098950524,
+    "trend": "cross_to_positive",
+    "induction_time": 1.2593703148425783
+  },
+  "source_003_fig11_grit220": {
+    "label": "Fig.11 Grit 220",
+    "rf_min": -0.0060893282268027,
+    "rf_max": 0.0274202835436773,
+    "rf_init": -0.0036516708869833,
+    "rf_final": 0.0274202835436773,
+    "t_range": [
+      0.0123674947004479,
+      11.876344366463975
+    ],
+    "t_cross_zero": 1.653589208947844,
+    "t_at_min": 0.254941279693976,
+    "trend": "cross_to_positive",
+    "induction_time": 1.653589208947844
+  },
+  "source_003_fig11_diapro": {
+    "label": "Fig.11 DiaPro polished",
+    "rf_min": -0.0068837322652664,
+    "rf_max": 0.0201402034161093,
+    "rf_init": -0.0017927170868347,
+    "rf_final": 0.0201402034161093,
+    "t_range": [
+      0.0539730134932527,
+      11.9371721392967
+    ],
+    "t_cross_zero": 2.553838430382843,
+    "t_at_min": 0.3317548025020551,
+    "trend": "cross_to_positive",
+    "induction_time": 2.553838430382843
+  },
+  "source_003_fig13_flat": {
+    "label": "Fig.13 Flat reference",
+    "rf_min": -0.0376011758878565,
+    "rf_max": 0.0645625267206443,
+    "rf_init": -0.0264271908793839,
+    "rf_final": 0.0645625267206443,
+    "t_range": [
+      0.5263730512242564,
+      19.90763741057604
+    ],
+    "t_cross_zero": 9.220707216649714,
+    "t_at_min": 2.1774586616965887,
+    "trend": "cross_to_positive",
+    "induction_time": 9.220707216649714
+  },
+  "source_003_fig13_pattern1": {
+    "label": "Fig.13 Pattern #1",
+    "rf_min": -0.0575582330918655,
+    "rf_max": 0.016412968778141,
+    "rf_init": -0.0343847974185283,
+    "rf_final": 0.016412968778141,
+    "t_range": [
+      0.1493881919561488,
+      19.705860543446363
+    ],
+    "t_cross_zero": 16.025022821625104,
+    "t_at_min": 2.421184268658253,
+    "trend": "cross_to_positive",
+    "induction_time": 16.025022821625104
+  },
+  "source_003_fig13_pattern2": {
+    "label": "Fig.13 Pattern #2",
+    "rf_min": -0.0575433967756988,
+    "rf_max": 0.0110362877993471,
+    "rf_init": -0.0299767300678677,
+    "rf_final": 0.0110362877993471,
+    "t_range": [
+      0.1194979603190695,
+      19.95397122596448
+    ],
+    "t_cross_zero": 16.969530090831814,
+    "t_at_min": 2.0309891534753604,
+    "trend": "cross_to_positive",
+    "induction_time": 16.969530090831814
+  },
+  "source_003_fig13_pattern3": {
+    "label": "Fig.13 Pattern #3",
+    "rf_min": -0.0589537369905006,
+    "rf_max": -0.0083729280662332,
+    "rf_init": -0.0083729280662332,
+    "rf_final": -0.0157993441565659,
+    "t_range": [
+      0.2082368479733762,
+      19.789820528317684
+    ],
+    "t_cross_zero": null,
+    "t_at_min": 2.7953561623811645,
+    "trend": "negative_stay",
+    "induction_time": 2.7953561623811645
+  }
+}
