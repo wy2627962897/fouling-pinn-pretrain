@@ -23,7 +23,7 @@
 \cortext[cor1]{Corresponding author: 3240101908@zju.edu.cn}
 
 \begin{abstract}
-Heat exchanger fouling is a major source of energy loss in the process industry, yet accurate prediction of fouling resistance evolution $R_f(t)$ is hindered by severe data scarcity in industrial settings. This study proposes a multi-mechanism pre-training framework that leverages five distinct fouling ODE models to pre-train a Physics-Informed Neural Network (PINN) on diverse synthetic data, followed by parameter-efficient fine-tuning on extremely sparse real measurements ($N = 5$--$30$ points). We validate the framework on 18 real fouling curves digitized from three peer-reviewed studies, spanning crystallization fouling, crude oil fouling, and CaCO$_3$ precipitation with induction periods. A critical baseline reveals that direct ODE curve fitting fails on 15 of 18 curves with sparse data ($R^2 \approx 0$ or negative), while PINN pre-training rescues 12 of these failures. Key findings include: (1) multi-mechanism pre-training is essential not for coverage but for \textit{diversity}---single-mechanism (Kern-Seaton only) pre-training catastrophically overfits, achieving $R^2 = -1329$ on its own target curve type, while multi-mechanism pre-training reaches $R^2 = 0.94$ on the same curve; (2) the framework achieves mean $R^2 > 0.90$ on 12 of 18 curves with only 15 training points in 5-seed multi-seed validation; (3) the pre-trained PINN consistently outperforms Random Forest in extrapolation ($\Delta R^2 = +1.3$ to $+18.7$ at $N=5$); and (4) PINN-driven cleaning strategies reduce dimensionless cost ratios by 20--97\% versus fixed-interval policies. Pre-training uses only publicly available physics models. Fine-tuning on a new heat exchanger takes approximately 3 seconds on consumer GPU hardware---though the current pipeline requires a human to select the appropriate ODE model based on curve morphology before fine-tuning begins.
+Heat exchanger fouling is a major source of energy loss in the process industry, yet accurate prediction of fouling resistance evolution $R_f(t)$ is hindered by severe data scarcity in industrial settings. This study proposes a multi-mechanism pre-training framework that leverages five distinct fouling ODE models to pre-train a Physics-Informed Neural Network (PINN) on diverse synthetic data, followed by parameter-efficient fine-tuning on extremely sparse real measurements ($N = 5$--$30$ points). We validate the framework on 18 real fouling curves digitized from three peer-reviewed studies, spanning crystallization fouling, crude oil fouling, and CaCO$_3$ precipitation with induction periods. A critical baseline reveals that direct ODE curve fitting fails on 15 of 18 curves with sparse data ($R^2 \approx 0$ or negative), while PINN pre-training rescues 12 of these failures. Key findings include: (1) multi-mechanism pre-training provides gains beyond data volume---when matched for trajectory count (2,000 each), single-mechanism pre-training achieves $R^2 = 0.62$ on its target curve type, while multi-mechanism pre-training reaches $R^2 = 0.91$ (+0.29 gain from mechanism diversity, not data volume); at lower volume (200 trajectories), single-mechanism pre-training collapses to $R^2 = -1329$, illustrating that both volume and diversity matter; (2) the framework achieves mean $R^2 > 0.90$ on 12 of 18 curves with only 15 training points in 5-seed multi-seed validation; (3) the pre-trained PINN consistently outperforms Random Forest in extrapolation ($\Delta R^2 = +1.3$ to $+18.7$ at $N=5$); and (4) PINN-driven cleaning strategies reduce dimensionless cost ratios by 20--97\% versus fixed-interval policies. Pre-training uses only publicly available physics models. Fine-tuning on a new heat exchanger takes approximately 3 seconds on consumer GPU hardware---though the current pipeline requires a human to select the appropriate ODE model based on curve morphology before fine-tuning begins.
 \end{abstract}
 
 \begin{keyword}
@@ -80,7 +80,7 @@ This study addresses both limitations through a multi-mechanism pre-training fra
 \item \textbf{Multi-mechanism ODE registry}: We implement five distinct fouling ODE models with a unified interface, enabling PINN pre-training on diverse synthetic fouling physics.
 \item \textbf{Pre-training + fine-tuning pipeline}: We demonstrate that pre-training a PINN on multi-mechanism synthetic data creates a physics-informed prior that transfers to real fouling curves via lightweight fine-tuning on as few as 5--30 sparse data points.
 \item \textbf{Comprehensive real-data validation}: We digitize and validate on 18 real fouling curves from three independent experimental studies, covering three fouling types and multiple surface conditions.
-\item \textbf{Single vs.\ multi-mechanism ablation}: We establish that multi-mechanism diversity prevents catastrophic over-specialization---single-mechanism pre-training achieves $R^2 = -1329$ on its own target curve type, while multi-mechanism pre-training reaches $R^2 = 0.94$ on the same curve.
+\item \textbf{Single vs.\ multi-mechanism ablation}: Using a KS-large control (2,000 trajectories, matching multi-mechanism volume), we disentangle data volume from mechanism diversity. Multi-mechanism pre-training outperforms single-mechanism by $\Delta R^2 = +0.29$ at equal volume, and both substantially outperform the low-volume single-mechanism baseline ($R^2 = -1329$ at 200 trajectories). Both data volume and mechanism diversity contribute independently to pre-training quality.
 \item \textbf{ODE-fit baseline and honest assessment}: By comparing against direct ODE curve fitting, we show that pure physics models fail on 15 of 18 curves with sparse data, precisely identifying the regime where PINN pre-training provides value---and honestly acknowledging where simpler methods suffice.
 \end{enumerate}
 
@@ -319,21 +319,18 @@ To test whether multi-mechanism diversity is genuinely necessary, we trained a v
 
 \begin{table}[htbp]
 \centering
-\caption{Single-mechanism (KS-only) vs.\ multi-mechanism pre-training ($N=15$, 5 seeds).}
+\caption{Single-mechanism vs.\ multi-mechanism pre-training ($N=15$). KS-small = 200 trajectories; KS-large = 2,000 trajectories (same volume as multi-mechanism).}
 \label{tab:single_vs_multi}
-\begin{tabular}{@{}p{3.8cm}ccc@{}}
+\begin{tabular}{@{}p{3.5cm}cccc@{}}
 \toprule
-Curve Category & KS-only $R^2$ & Multi-mech $R^2$ & Winner \\
+Curve / Category & KS-small $R^2$ & KS-large $R^2$ & Multi-mech $R^2$ & Winner \\
 \midrule
-Source 001---Phosphoric acid (in-domain) & \textbf{$-$1329} & 0.94 & Multi \\
-Source 002 FED---Crude oil (OOD-1) & 0.21 & \textbf{0.64} & Multi \\
-Source 002 CBA---Crude oil (OOD-1) & $-$0.21 & \textbf{0.27} & Multi \\
-Source 003 Run1---Unmodified (OOD-2) & \textbf{0.92} & 0.74 & KS-only \\
-Source 003 Run2---Unmodified (OOD-2) & \textbf{0.83} & 0.55 & KS-only \\
-Source 003 Run3---Unmodified (OOD-2) & \textbf{0.84} & 0.78 & KS-only \\
-Coating curves (4 curves) & 0.995--0.997 & 0.993--0.997 & Tie \\
-Surface treatment (4 curves) & 0.990--0.997 & 0.990--0.998 & Tie \\
-Pattern surface (4 curves) & 0.802--0.995 & 0.824--0.994 & Tie \\
+Source 001---Phosphoric acid & \textbf{$-$1329} & 0.62 & \textbf{0.91} & Multi \\
+Source 002 FED---Crude oil & 0.21 & 0.03 & \textbf{0.65} & Multi \\
+S003 Coating L1 & 0.995 & 0.993 & 0.994 & Tie \\
+Source 003 Run1---Unmodified & \textbf{0.92} & 0.46 & 0.70 & KS-small \\
+\addlinespace
+Remaining 14 curves (aggregate) & \multicolumn{3}{c}{KS-large comparable to KS-small; Multi-mech wins or ties on 12/14} & \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -469,7 +466,7 @@ Source 001 (phosphoric acid) illustrates a practical vulnerability of the pipeli
 This study presented a multi-mechanism pre-training framework for physics-informed fouling resistance prediction. The key findings are:
 
 \begin{enumerate}
-\item \textbf{Multi-mechanism diversity provides gains beyond data volume}. A KS-large control (2,000 Kern-Seaton trajectories, matching multi-mechanism volume) confirms that mechanism diversity ($\Delta R^2 = +0.29$ on Source 001, $+0.68$ on Source 002 FED) cannot be replicated by increasing single-mechanism data volume. Both data volume and mechanism diversity contribute independently to pre-training quality---volume prevents the most extreme over-fitting, while diversity provides the additional regularization needed for robust generalization.
+\item \textbf{Multi-mechanism diversity provides gains beyond data volume}. A KS-large control (2,000 KS trajectories, matched volume) confirms that mechanism diversity ($\Delta R^2 = +0.29$ on Source 001) cannot be replicated by scaling single-mechanism data. The often-quoted $R^2 = -1329$ (200-trajectory KS-small) reflects a confound of data volume and diversity; at equal volume, single-mechanism reaches $R^2 = 0.62$, while multi-mechanism reaches $R^2 = 0.91$. Volume and diversity are both necessary, but diversity provides the irreplaceable gain.
 \item \textbf{The framework achieves practical accuracy on complex fouling curves}. A 5-seed multi-seed validation across all 18 curves ($N=15$) confirms that PINN mean $R^2$ exceeds 0.90 on 12 of 18 curves. A complementary 10-seed experiment on 5 representative curves reveals that Source 001 performance is stable (median $R^2 = 0.90$, IQR $= [0.84, 0.92]$) provided the upstream ODE parameter estimation converges---a condition met in 9 of 10 seeds. The remaining curves fall into categories where either direct ODE fitting is simpler and more accurate (Source 001) or where both PINN and RF provide partial solutions in industrially challenging regimes.
 \item \textbf{Physics-constrained pre-training enables extrapolation}. The pre-trained PINN consistently outperforms RF in extrapolation tasks ($\Delta R^2 = +1.3$ to $+18.7$ at $N=5$).
 \item \textbf{The approach is feasible for industrial deployment with one remaining automation gap}. Pre-training requires only publicly available physics models; fine-tuning takes approximately 3 seconds per heat exchanger on an NVIDIA RTX 4060 GPU; and PINN-driven cleaning strategies reduce dimensionless costs relative to fixed-interval policies. The current bottleneck is the need for human judgment in selecting the appropriate ODE model for a given curve---automating this step, or developing a single unified ODE that adapts to all curve types, is the main engineering task remaining before fully hands-off deployment.
