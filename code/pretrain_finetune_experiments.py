@@ -601,115 +601,131 @@ def compute_dimensionless_cost_ratio(
 ):
     """Compute dimensionless cost ratio for a cleaning strategy.
 
-    Strategy cost = [cleaning cost + downtime cost + energy penalty]
-    Dimensionless ratio = strategy_cost / oracle_cost
-
-    Oracle = clean exactly when Rf reaches Rf_crit (perfect foresight).
-    Energy penalty = ∫ Rf(t) dt between cleanings (proportional to extra fuel).
+    All strategies correctly reset Rf to 0 after each cleaning,
+    tracking energy penalty segment-by-segment between cleanings.
+    Oracle = clean exactly when TRUE Rf reaches Rf_crit (theoretical minimum).
 
     Parameters
     ----------
-    Rf_curve: true Rf(t) values
+    Rf_curve: true Rf(t) values (used for energy cost computation in ALL strategies)
     t_curve: time points
     Rf_crit: critical Rf threshold for cleaning
-    t_cleaning_downtime: time lost per cleaning event (in same units as t_curve)
+    t_cleaning_downtime: time lost per cleaning event
     fixed_interval: if not None, clean every N time units
-    threshold_based: if True, clean when Rf exceeds Rf_crit
-    prediction_based: if True, use Rf_predicted to decide cleaning
-    Rf_predicted: predicted Rf(t) for prediction-based strategy
+    prediction_based: if True, use Rf_predicted to decide WHEN to clean
+    Rf_predicted: predicted Rf(t) for timing decisions only
     """
-    # Energy penalty = ∫ Rf(t) dt (trapezoidal integration)
-    def energy_penalty(t_start, t_end):
-        mask = (t_curve >= t_start) & (t_curve <= t_end)
+    t0 = t_curve[0]
+    t_total = t_curve[-1] - t0
+
+    # Helper: energy cost for ONE fouling cycle of duration D
+    # Uses the TRUE Rf_curve (after reset, fouling follows same trajectory)
+    def cycle_energy(D):
+        if D <= 0:
+            return 0.0
+        # Find the Rf values up to time D (from start of curve)
+        mask = (t_curve - t0) <= D
         if mask.sum() < 2:
             return 0.0
-        return np.trapz(Rf_curve[mask], t_curve[mask])
+        return float(np.trapz(Rf_curve[mask], t_curve[mask]))
 
-    # Oracle strategy: clean immediately when Rf reaches Rf_crit
-    # This gives the minimum possible cost
-    t_total = t_curve[-1] - t_curve[0]
-    n_oracle_cleanings = 0
-    t = t_curve[0]
-    oracle_cost = 0.0
+    def strategy_cost_from_intervals(intervals):
+        """intervals: list of (usable_time_before_cleaning, ...)"""
+        total = 0.0
+        for usable_t in intervals:
+            total += 1.0  # cleaning cost (normalized)
+            total += cycle_energy(usable_t)
+        return total
 
-    # Find oracle cleaning points
+    # ── Oracle: clean exactly when TRUE Rf reaches Rf_crit ──
     above_crit = np.where(Rf_curve >= Rf_crit)[0]
     if len(above_crit) == 0:
-        # Never reaches critical — no cleaning needed
-        oracle_energy = energy_penalty(t_curve[0], t_curve[-1])
-        oracle_cost = oracle_energy
+        oracle_cost = cycle_energy(t_total)
+        n_oracle = 0
     else:
-        i = 0
-        while i < len(above_crit):
-            clean_idx = above_crit[i]
-            clean_t = t_curve[clean_idx]
-            oracle_energy = energy_penalty(t, clean_t)
-            oracle_cost += oracle_energy + 1.0  # 1.0 = normalized cleaning cost
-            n_oracle_cleanings += 1
-            t = clean_t + t_cleaning_downtime
-            # After cleaning, Rf resets; find next threshold crossing
-            above_crit_after = np.where((t_curve >= t) & (Rf_curve >= Rf_crit))[0]
-            if len(above_crit_after) == 0:
+        oracle_intervals = []
+        t_current = t0
+        idx = 0
+        while idx < len(above_crit):
+            clean_t = t_curve[above_crit[idx]]
+            usable = clean_t - t_current
+            oracle_intervals.append(usable)
+            t_current = clean_t + t_cleaning_downtime
+            # Find next crossing after downtime
+            next_idx = np.where((t_curve >= t_current) & (Rf_curve >= Rf_crit))[0]
+            if len(next_idx) == 0:
                 break
-            i = above_crit_after[0] - above_crit[0] if above_crit_after[0] >= above_crit[0] else len(above_crit)
-            if i >= len(above_crit):
+            idx = next_idx[0] - above_crit[0] if next_idx[0] >= above_crit[0] else len(above_crit)
+            if idx >= len(above_crit):
                 break
-            above_crit = above_crit[i:]
-            i = 0
+            above_crit = above_crit[idx:]
+            idx = 0
+        # Remaining energy after last cleaning
+        remaining = t_curve[-1] - t_current
+        if remaining > 0:
+            oracle_cost = cycle_energy(remaining)
+            for usable in oracle_intervals:
+                oracle_cost += 1.0 + cycle_energy(usable)
+            n_oracle = len(oracle_intervals)
+        else:
+            oracle_cost = 0.0
+            for usable in oracle_intervals:
+                oracle_cost += 1.0 + cycle_energy(usable)
+            n_oracle = len(oracle_intervals)
 
-        # Energy after last cleaning or if no cleaning needed
-        if t < t_curve[-1]:
-            oracle_cost += energy_penalty(t, t_curve[-1])
+    if oracle_cost <= 0:
+        oracle_cost = max(cycle_energy(t_total), 1e-10)
 
-    # Strategy evaluation
+    # ── Fixed-interval strategy ──
     if fixed_interval is not None:
-        n_cleanings = int((t_total - t_cleaning_downtime) / fixed_interval)
-        if n_cleanings < 1:
-            n_cleanings = 0
-        strategy_cost = n_cleanings * 1.0 + energy_penalty(t_curve[0], t_curve[-1])
-
-    elif threshold_based and Rf_predicted is not None:
-        # Use predicted Rf to decide when to clean
-        above_crit_pred = np.where(Rf_predicted >= Rf_crit)[0]
-        if len(above_crit_pred) == 0:
-            n_cleanings = 0
+        n_cleanings = max(0, int(t_total / fixed_interval))
+        if n_cleanings == 0:
+            strategy_cost = cycle_energy(t_total)
         else:
-            # First crossing
-            n_cleanings = 1 + int((t_total - t_curve[above_crit_pred[0]]) /
-                                  (t_curve[above_crit_pred[0]] - t_curve[0] + t_cleaning_downtime))
-        strategy_cost = max(n_cleanings, 0) * 1.0 + energy_penalty(t_curve[0], t_curve[-1])
+            cycle_duration = fixed_interval - t_cleaning_downtime
+            strategy_cost = n_cleanings * (1.0 + cycle_energy(cycle_duration))
+            # Remaining after last cleaning
+            remaining = t_total - n_cleanings * fixed_interval
+            if remaining > 0:
+                strategy_cost += cycle_energy(remaining)
+        n_strategy = n_cleanings
 
+    # ── PINN-predicted strategy ──
     elif prediction_based and Rf_predicted is not None:
-        # Dynamic: clean before Rf_predicted exceeds Rf_crit
-        above_crit_pred = np.where(Rf_predicted >= Rf_crit * 0.9)[0]  # 10% safety margin
-        if len(above_crit_pred) == 0:
-            n_cleanings = 0
+        # Find cleaning times from PREDICTED Rf (decisions)
+        above_pred = np.where(Rf_predicted >= Rf_crit * 0.9)[0]  # 10% safety margin
+        if len(above_pred) == 0:
+            strategy_cost = cycle_energy(t_total)
+            n_strategy = 0
         else:
-            first_warning = above_crit_pred[0]
-            # Interval based on predicted crossing
-            predicted_interval = t_curve[first_warning] - t_curve[0]
-            if predicted_interval > 0:
-                n_cleanings = int(t_total / predicted_interval)
+            first_warning_t = t_curve[above_pred[0]]
+            predicted_interval = first_warning_t - t0
+            if predicted_interval <= 0:
+                predicted_interval = t_total
+            n_cleanings = max(0, int(t_total / predicted_interval))
+            if n_cleanings == 0:
+                strategy_cost = cycle_energy(t_total)
             else:
-                n_cleanings = 0
-        strategy_cost = max(n_cleanings, 0) * 1.0 + energy_penalty(t_curve[0], t_curve[-1])
+                cycle_dur = predicted_interval - t_cleaning_downtime
+                strategy_cost = n_cleanings * (1.0 + cycle_energy(cycle_dur))
+                remaining = t_total - n_cleanings * predicted_interval
+                if remaining > 0:
+                    strategy_cost += cycle_energy(remaining)
+            n_strategy = n_cleanings
 
     else:
         # No cleaning
-        strategy_cost = energy_penalty(t_curve[0], t_curve[-1])
+        strategy_cost = cycle_energy(t_total)
+        n_strategy = 0
 
-    # Dimensionless cost ratio
-    if oracle_cost > 0:
-        cost_ratio = strategy_cost / oracle_cost
-    else:
-        cost_ratio = 1.0
+    cost_ratio = strategy_cost / oracle_cost if oracle_cost > 0 else 1.0
 
     return {
         "cost_ratio": cost_ratio,
         "oracle_cost": oracle_cost,
         "strategy_cost": strategy_cost,
-        "n_cleanings_strategy": n_cleanings if 'n_cleanings' in dir() else 0,
-        "n_cleanings_oracle": n_oracle_cleanings,
+        "n_cleanings_strategy": n_strategy,
+        "n_cleanings_oracle": n_oracle,
     }
 
 

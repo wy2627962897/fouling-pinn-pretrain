@@ -323,23 +323,23 @@ Table~\ref{tab:economic} shows dimensionless cost ratios for different cleaning 
 
 \begin{table}[htbp]
 \centering
-\caption{Dimensionless cost ratios for cleaning strategies ($N=10$).}
+\caption{Corrected dimensionless cost ratios ($N=15$). All strategies use segment-by-segment energy integration with Rf reset after each cleaning. $k$ = number of cleanings.}
 \label{tab:economic}
-\begin{tabular}{@{}p{3.2cm}cccc@{}}
+\begin{tabular}{@{}p{3.2cm}rrrrrr@{}}
 \toprule
-Curve & Fixed 25\% & Fixed 33\% & PINN & PINN Savings \\
+Curve & Oracle $k$ & Fixed 25\% & Fixed 33\% & PINN $k$ & PINN Cost & Savings \\
 \midrule
-Source 001---Phosphoric acid & 0.143 & 0.096 & \textbf{0.048} & 50\% \\
-Source 002 CBA---Crude oil & 2.752 & 1.878 & \textbf{0.129} & 93\% \\
-Source 002 FED---Crude oil & 1.004 & 0.681 & \textbf{0.034} & 95\% \\
-S003 Coating L1 & 0.882 & 0.791 & \textbf{0.700} & 12\% \\
-S003 Fig.11 Ref & 0.317 & 0.218 & \textbf{0.119} & 45\% \\
-S003 Fig.13 Flat & 0.780 & 0.532 & \textbf{0.284} & 47\% \\
+Source 001---Phosphoric acid & 42 & 0.100 & 0.075 & 1 & \textbf{0.025} & 66.5\% \\
+Source 002 CBA---Crude oil & 2 & 1.924 & 1.459 & 0 & \textbf{0.069} & 95.3\% \\
+Source 002 FED---Crude oil & 10 & 0.407 & 0.308 & 1 & \textbf{0.109} & 64.5\% \\
+S003 Coating L1 & 15 & 0.111 & 0.060 & 1 & 0.109 & $-$81.9\% \\
+S003 Fig.11 Ref & 22 & 0.200 & 0.151 & 1 & \textbf{0.055} & 63.9\% \\
+S003 Fig.13 Flat & 5 & 0.673 & 0.487 & 1 & \textbf{0.164} & 66.3\% \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The PINN-driven strategy consistently achieves the lowest cost ratio. The advantage is most dramatic for industrial crude oil curves (93--95\% savings). Sensitivity analysis with $\pm 50\%$ variations in cost parameters confirmed that PINN-predicted strategies maintain their advantage across all parameter combinations.
+\textbf{Interpretation}: Cost ratios below 1.0 reflect the PINN predicting fewer cleanings than the Oracle---a consequence of conservative $R_f$ prediction rather than genuine economic superiority. For curves where the PINN achieves high $R^2$ (S003 Fig.11 Ref, $R^2=0.99$), the predicted cleaning schedule is based on accurate fouling forecasts, and cost savings (63.9\%) are credible. For curves with low $R^2$ (Source 002 CBA, $R^2=0.55$), the reported 95.3\% savings are \textit{not} reliable---the PINN predicts zero cleanings because it underestimates $R_f$, not because cleaning is genuinely unnecessary. The cost ratio should therefore be interpreted as an upper bound on achievable savings, conditional on sufficient prediction accuracy. The negative savings for S003 Coating L1 ($-$81.9\%) indicate that the PINN over-cleans relative to the fixed-interval baseline for this specific curve at this seed. All cost ratios include Oracle $k$ as a reference for the theoretical minimum number of cleanings.
 
 \subsection{Statistical Robustness: Multi-Seed Validation}
 \label{sec:multiseed}
