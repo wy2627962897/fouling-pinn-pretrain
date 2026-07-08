@@ -1,4 +1,4 @@
-# LaTeX aux files only
+# ── LaTeX auxiliary files ──
 *.aux
 *.log
 *.out
@@ -8,24 +8,41 @@
 *.blg
 *.fdb_latexmk
 *.fls
+*.spl
+*.run.xml
+*.bcf
 
-# Python cache
+# ── Python cache ──
 __pycache__/
 *.pyc
+*.pyo
 
-# Claude skills (not project)
-.claude/
+# ── Generated PDFs (keep source .tex only) ──
+manuscript/*.pdf
+drafts/*.pdf
 
-# Obsidian metadata
+# ── Code output (large/binary, regeneratable) ──
+code/output/
+!code/output/*.csv
+!code/output/*.json
+
+# ── Obsidian metadata ──
 .obsidian/
 .smart-env/
 
-# Source PDFs (copyright)
-提取真实数据/*.pdf
-
-# Graphify output
+# ── AI tool outputs ──
+.claude/
 graphify-out/
 
-# Temp
+# ── Source PDFs (copyright) ──
+提取真实数据/*.pdf
+
+# ── Submission artifacts ──
+tsep_submission.zip
+cover_letter.pdf
+title_page.pdf
+
+# ── Temp ──
 *.bak
 *.swp
+*~

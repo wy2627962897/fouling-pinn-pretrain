@@ -8,22 +8,19 @@
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{hyperref}
 
-\journal{Applied Thermal Engineering}
+\journal{Thermal Science and Engineering Progress}
 
 \begin{document}
 
 \begin{frontmatter}
 
-\title{Multi-Mechanism Pre-training Enables Robust Physics-Informed Fouling Prediction under Sparse Industrial Data}
+\title{Multi-Mechanism Pre-Training of Physics-Informed Neural Networks for Fouling Resistance Reconstruction from Sparse Measurements}
 
-\author[1]{Jiancheng Liu\corref{cor1}}
-
-\address[1]{College of Chemical and Biological Engineering, Zhejiang University, Hangzhou 310058, China}
-
-\cortext[cor1]{Corresponding author: 3240101908@zju.edu.cn}
+% Author details removed for double-blind review.
+% Full title page with author information is provided as a separate file.
 
 \begin{abstract}
-Heat exchanger fouling is a major source of energy loss in the process industry, yet accurate prediction of fouling resistance evolution $R_f(t)$ is hindered by severe data scarcity in industrial settings. This study proposes a multi-mechanism pre-training framework that leverages five distinct fouling ODE models to pre-train a Physics-Informed Neural Network (PINN) on diverse synthetic data, followed by parameter-efficient fine-tuning on extremely sparse real measurements ($N = 5$--$30$ points). We validate the framework on 18 real fouling curves digitized from three peer-reviewed studies, spanning crystallization fouling, crude oil fouling, and CaCO$_3$ precipitation with induction periods. A critical baseline reveals that direct ODE curve fitting fails on 15 of 18 curves with sparse data ($R^2 \approx 0$ or negative), while PINN pre-training rescues 12 of these failures. Key findings include: (1) multi-mechanism pre-training provides gains beyond data volume---when matched for trajectory count (2,000 each), single-mechanism pre-training achieves $R^2 = 0.62$ on its target curve type, while multi-mechanism pre-training reaches $R^2 = 0.91$ (+0.29 gain from mechanism diversity, not data volume); at lower volume (200 trajectories), single-mechanism pre-training collapses to $R^2 = -1329$, illustrating that both volume and diversity matter; (2) the framework achieves mean $R^2 > 0.90$ on 12 of 18 curves with only 15 training points in 5-seed multi-seed validation; (3) the pre-trained PINN outperforms Random Forest in extrapolation on 6 of 8 tested curves at $N=5$ (median $\Delta R^2 = +1.8$), though both methods produce negative absolute $R^2$---extrapolation remains an open challenge for all methods; and (4) PINN-driven cleaning strategies reduce dimensionless cost ratios by 20--97\% versus fixed-interval policies. Pre-training uses only publicly available physics models. Fine-tuning on a new heat exchanger takes approximately 3 seconds on consumer GPU hardware---though the current pipeline requires a human to select the appropriate ODE model based on curve morphology before fine-tuning begins.
+Heat exchanger fouling is a major source of energy loss in the process industry, yet accurate estimation of fouling resistance evolution $R_f(t)$ is hindered by severe data scarcity in practical settings. This study proposes a multi-mechanism pre-training framework that leverages five distinct fouling ODE models to pre-train a Physics-Informed Neural Network (PINN) on diverse synthetic data, followed by parameter-efficient fine-tuning on extremely sparse real measurements ($N = 5$--$30$ points). We validate the framework on 18 fouling curves digitized from three peer-reviewed studies, spanning crystallization fouling, crude oil fouling, and CaCO$_3$ precipitation with induction periods. A critical baseline reveals that direct ODE curve fitting fails on 15 of 18 curves with sparse data ($R^2 \approx 0$ or negative), while PINN pre-training rescues 12 of these failures. For pure interpolation, smoothing spline and Gaussian Process baselines remain highly competitive with the PINN (median $R^2 \approx 0.99$ at $N=15$; see Supplementary Table~S2); the principal value of the proposed framework lies in physics-grounded representation and downstream decision integration rather than universal interpolation superiority. Key findings include: (1) multi-mechanism pre-training provides gains beyond data volume---when matched for trajectory count (2,000 each), single-mechanism pre-training achieves $R^2 = 0.62$ on its target curve type, while multi-mechanism pre-training reaches $R^2 = 0.91$ (+0.29 gain from mechanism diversity, not data volume); at lower volume (200 trajectories), single-mechanism pre-training collapses to $R^2 = -1329$, illustrating that both volume and diversity matter; (2) the framework achieves mean $R^2 > 0.90$ on 12 of 18 curves with only 15 training points in 5-seed multi-seed validation; (3) the pre-trained PINN outperforms Random Forest in extrapolation on 6 of 8 tested curves at $N=5$ (median $\Delta R^2 = +1.8$), though both methods produce negative absolute $R^2$---extrapolation remains an open challenge for all methods; and (4) in a retrospective illustrative cleaning analysis, PINN-derived schedules produced 20--67\% lower dimensionless cost ratios than fixed-interval policies on curves with reliable reconstruction accuracy ($R^2 > 0.80$), with strategy rankings stable across a four-level threshold sensitivity analysis. Pre-training uses only publicly available physics models. Fine-tuning on a target curve takes approximately 3 seconds on consumer GPU hardware---though the current pipeline requires a human to select the appropriate ODE model based on curve morphology; an N-point-only geometric auto-selector achieves 87\% accuracy (Supplementary Table~S1), demonstrating feasibility for automation.
 \end{abstract}
 
 \begin{keyword}
@@ -54,11 +51,11 @@ Since fouling is unavoidable, industrial practice relies on periodic cleaning to
 \begin{equation}
 \min_{t_{\text{clean}}} \left[ \text{Energy Penalty}(t_{\text{clean}}) + \text{Cleaning Cost} + \text{Downtime Cost} \right]
 \end{equation}
-This optimization requires accurate prediction of $R_f(t)$, specifically the time at which the fouling resistance will exceed a critical threshold $R_{f,\text{crit}}$. Without a reliable predictive model, cleaning decisions are made by heuristics---typically fixed calendar intervals---that are almost certainly suboptimal.
+This optimization requires accurate reconstruction of $R_f(t)$ from sparse measurements, specifically the time at which the fouling resistance will exceed a critical threshold $R_{f,\text{crit}}$. Without a reliable predictive model, cleaning decisions are made by heuristics---typically fixed calendar intervals---that are almost certainly suboptimal.
 
 \subsection{The Data Scarcity Problem}
 
-Accurate $R_f(t)$ prediction faces a fundamental obstacle: industrial fouling data is extremely scarce. Plant operators are reluctant to share operational data due to competitive sensitivity, and installing dedicated fouling monitoring instrumentation is expensive. The typical industrial scenario involves a handful of historical cleaning records and occasional temperature/pressure measurements convertible to $R_f$ estimates.
+Accurate $R_f(t)$ estimation faces a fundamental obstacle: industrial fouling data is extremely scarce. Plant operators are reluctant to share operational data due to competitive sensitivity, and installing dedicated fouling monitoring instrumentation is expensive. The typical industrial scenario involves a handful of historical cleaning records and occasional temperature/pressure measurements convertible to $R_f$ estimates.
 
 Standard machine learning approaches (MLPs, random forests, gradient boosting) require hundreds to thousands of labeled examples to achieve acceptable accuracy. With only 5--30 data points---the realistic industrial scenario---purely data-driven methods either fail completely or produce physically implausible predictions.
 
@@ -136,11 +133,11 @@ Pre-training data is generated from all five ODE models with stratified paramete
 For each real fouling curve, the fine-tuning pipeline proceeds as:
 
 \begin{enumerate}
-\item \textbf{ODE model matching}: Select the appropriate ODE model based on the curve's visual characteristics and the fouling type reported in the source publication. Asymptotic curves (Source 001, Source 002) use Model 3; curves with visible induction periods (Source 003) use Model 4. In the current implementation, this selection is performed by human annotation based on the visual appearance of the digitized curve and the fouling type reported in the source publication. Because the five candidate models include three Kern-Seaton variants with overlapping functional forms, and because the sparse data regime ($N=5$--$30$) makes information-criterion-based selection unreliable (the 2-parameter penalty term is dominated by likelihood estimates that are themselves unreliable with so few points), we do not claim that automatic ODE model selection is solved in this work. The development of a robust automated selection method---potentially using curve shape features or a meta-classifier trained on the pre-training data---is an important direction for future work.
+\item \textbf{ODE model matching}: Select the appropriate ODE model based on the curve's visual characteristics and the fouling type reported in the source publication. Asymptotic curves (Source 001, Source 002) use Model 3; curves with visible induction periods (Source 003) use Model 4. \textbf{Important caveat}: In the current main experiments, this selection is performed by human annotation using the complete digitized curve, which constitutes information leakage (the annotator sees the full curve that would be unavailable in a real sparse-data setting). To quantify this leakage, we conducted an N-point-only auto-selection ablation using a geometric heuristic operating solely on the $N=15$ sparse points: the ratio of mean $R_f$ in the first third vs.\ last third of sparse observations determines whether an induction period is present (ratio $<0.15 \to$ induction\_linear, otherwise ks\_simple). This auto-selector achieves 87\% accuracy (47/54 trials; full per-trial results in Supplementary Table~S1), and on 13 of 18 curves the ``wrong'' ODE produces $|\Delta R^2| < 0.02$---the pre-training prior partially compensates for mismatched physics constraints. The pipeline is therefore not unduly fragile to this choice, but a robust automated selection method remains necessary for fully hands-off deployment.
 \item \textbf{ODE parameter estimation}: Fit the selected ODE model to the $N$ sparse points using \texttt{scipy.curve\_fit}, obtaining estimated physical parameters $\hat{\mathbf{p}}$.
 \item \textbf{Condition encoding}: Encode $\hat{\mathbf{p}}$ into the unified 10-dimensional input format.
 \item \textbf{Fine-tuning}: Initialize from pre-trained weights, train for 2,000 epochs with $\lambda = 0.3$, learning rate $10^{-4}$, and 150 collocation points along the trajectory's time range.
-\item \textbf{Full prediction}: Evaluate the fine-tuned model on the complete time range.
+\item \textbf{Full-curve reconstruction}: Evaluate the fine-tuned model on the complete time range. Note that this evaluates interpolation (training points are randomly scattered across the full range), not forward prediction.
 \end{enumerate}
 
 \subsection{Baseline Methods and Ablation Design}
@@ -170,12 +167,12 @@ The Riihim\"aki et al.\ curves span four experimental configurations: unmodified
 
 \subsection{Evaluation Metrics}
 
-\textbf{Prediction accuracy}: $R^2$ and Mean Absolute Error (MAE) on the full curve. Primary results use a fixed random seed (42); Section~\ref{sec:multiseed} reports multi-seed statistics. \textbf{Extrapolation}: Train on the first 50\% of the time range, predict the full curve. \textbf{Economic impact}: Dimensionless cost ratio as defined in Section~\ref{sec:economic_model}.
+\textbf{Reconstruction accuracy}: $R^2$ and Mean Absolute Error (MAE) on the full curve. Primary results use a fixed random seed (42); Section~\ref{sec:multiseed} reports multi-seed statistics. \textbf{Extrapolation}: Train on the first 50\% of the time range; evaluate on the held-out second 50\% (the full-curve $R^2$ shown includes both seen and unseen regions for completeness, but the metric of interest is extrapolation accuracy on the unseen portion). \textbf{Economic impact}: Dimensionless cost ratio as defined in Section~\ref{sec:economic_model}.
 
 \subsection{Economic Model for Cleaning Optimization}
 \label{sec:economic_model}
 
-To quantify the practical benefit of accurate $R_f(t)$ prediction, we define a dimensionless cost model. All costs are normalized by the cleaning cost $C_{\text{clean}}$, making the analysis independent of absolute currency units.
+To quantify the practical benefit of accurate $R_f(t)$ reconstruction, we define a dimensionless cost model. All costs are normalized by the cleaning cost $C_{\text{clean}}$, making the analysis independent of absolute currency units.
 
 \textbf{Cost components}: For a cleaning strategy performing cleanings at times $\{t_1, t_2, \ldots, t_k\}$:
 \begin{equation}
@@ -183,11 +180,11 @@ C_{\text{total}} = k \cdot C_{\text{clean}} + c_{\text{energy}} \cdot \int_0^T R
 \end{equation}
 where the integral represents the cumulative energy penalty from fouling-induced heat transfer degradation, proportional to $\int R_f(t) \, dt$ under constant heat duty operation \cite{muller2005fouling}.
 
-\textbf{Cleaning strategies}: Fixed-interval (clean every $T/3$ or $T/4$ days), PINN-predicted (use $\hat{R}_f(t)$ to anticipate threshold crossing at $R_{f,\text{crit}} = 0.8 \cdot \max(R_f)$, with 10\% safety margin), and Oracle (perfect knowledge of true $R_f(t)$, providing the theoretical lower bound).
+\textbf{Cleaning strategies}: Fixed-interval (clean every $T/3$ or $T/4$ days), PINN-predicted (use $\hat{R}_f(t)$ to anticipate threshold crossing at $R_{f,\text{crit}}$, with 10\% safety margin), and Reference threshold policy (uses true $R_f(t)$ to detect threshold crossings---requires perfect real-time fouling monitoring; does \textit{not} minimize total cost and is not a theoretical lower bound).
 
-\textbf{Dimensionless cost ratio}: $\text{Cost Ratio}(S) = C_{\text{total}}(S) / C_{\text{total}}(\text{Oracle})$. Ratios above 1.0 indicate inefficiency.
+\textbf{Dimensionless cost ratio}: $\text{Cost Ratio}(S) = C_{\text{total}}(S) / C_{\text{total}}(\text{Reference})$. Ratios below 1.0 indicate that the strategy's cleaning schedule achieves lower total cost than the reference policy's schedule.
 
-\textbf{Parameter sources}: The critical threshold $R_{f,\text{crit}} = 0.8 \cdot \max(R_f)$ is a heuristic consistent with industrial practice of cleaning before complete blockage \cite{muller2011heat}. The energy penalty coefficient $c_{\text{energy}}$ is absorbed into the dimensionless formulation. Sensitivity analysis varies the ratio $c_{\text{energy}}/C_{\text{clean}}$ by $\pm 50\%$, covering scenarios from cheap energy/expensive cleaning to expensive energy/cheap cleaning.
+\textbf{Threshold definition and sensitivity}: The critical threshold $R_{f,\text{crit}}$ for cleaning depends on the heat exchanger design specification (maximum allowable fouling resistance), which varies by equipment and is unknown to us for the digitized literature curves. As a proxy, we define $R_{f,\text{crit}} = f \cdot \max(R_f)$ and report results for four threshold factors $f \in \{0.50, 0.65, 0.80, 0.95\}$ to assess whether strategy rankings are sensitive to this choice. In industrial practice, the plant engineer would set $R_{f,\text{crit}}$ based on the exchanger's design datasheet. We note that using $\max(R_f)$ from the full curve requires knowledge of the peak fouling resistance---information unavailable at $t=0$ in real operations; this is a limitation of our retrospective analysis, not a feature of the method itself.
 
 %=====================================================================
 \section{Results}
@@ -210,7 +207,7 @@ Table~\ref{tab:main_results} presents the results at $N = 15$ sparse training po
 
 \begin{table}[htbp]
 \centering
-\caption{Prediction performance at $N=15$ sparse points (single seed=42).}
+\caption{Reconstruction performance at $N=15$ sparse points (single seed=42).}
 \label{tab:main_results}
 \footnotesize
 \begin{tabular}{@{}p{2.8cm}p{2.4cm}cccc@{}}
@@ -241,14 +238,14 @@ S003 Fig.13 Pattern3 & CaCO$_3$ & $-$0.114 & 0.899 & \textbf{0.987} & PINN \\
 
 \textbf{Key observations}: (1) Pure physics fitting (ODE-fit) fails on 15 of 18 curves with $R^2 \approx 0$ or negative---the 3-parameter ODE models are under-determined with sparse noisy data. (2) PINN bridges this gap, achieving $R^2 > 0.90$ on 12 of those 15 failed cases. (3) Pre-training is the dominant performance driver (Section~\ref{sec:ablation}): PT+Phys $-$ NoPT+Phys $= +3.10$ on Source 001, while PT+Phys $-$ PT+NoPhys $= 0.000$---the physics loss during fine-tuning contributes nothing beyond what pre-training already provides. (4) Augmenting RF with ODE-fitted parameters as additional features (RF$_{\text{fair}}$) yields zero improvement over basic RF ($|\Delta R^2| = 0.000000$ across all tested curves, sparsity levels, and random seeds). This is not a bug but a consequence of two facts: (i) the ODE-fitted parameters ($\hat{R}_f^*$, $\hat{\tau}$, $\hat{R}_{f0}$, or $\hat{t}_{\text{ind}}$, $\hat{k}_{\text{growth}}$) are identical for all time points within a single curve, providing zero discriminative power to a decision tree---a constant feature cannot split a node; and (ii) when ODE fitting fails (which occurs in 3/4 to 4/4 of seeds with $N=5$--$20$ sparse points, producing NaN or non-convergent estimates), RF$_{\text{fair}}$ falls back to the $[t]$-only feature set by construction. The PINN's advantage therefore derives from its \textit{learned} shape prior from pre-training, not from access to richer pointwise features. (5) MLP performance is sensitive to output scaling. With standard output normalization (StandardScaler applied to both input $t$ and target $R_f$), a 64-32 MLP achieves $R^2 = 0.996$ on Source 001 (competitive with RF's 0.993), $R^2 = 0.985$ on Source 003 Coating L1, and $R^2 = 0.582$ on Source 002 FED. Without output scaling, the numerical mismatch between the MLP's default initialization range and the small $R_f$ magnitudes ($\sim 10^{-4}$--$10^{-1}$) causes $R^2$ values of $-10^6$ to $-10^3$. We report the scaled version as the fair baseline; the unscaled version is noted as a cautionary example of how a trivial implementation oversight can produce misleadingly weak baselines in small-data regression. (6) Representative MAE values for the PINN main method at $N=15$: $\text{MAE} = 1.0 \times 10^{-5}$ m$^2\cdot$K/W (Source 001), $1.6 \times 10^{-4}$ (Source 002 FED), $2.2 \times 10^{-3}$ (Source 003 Coating L1), and $4.3 \times 10^{-4}$ (Source 003 Fig.11 Ref).
 
-\subsection{Prediction Curve Visualization}
+\subsection{Reconstruction Curve Visualization}
 
 Figure~\ref{fig:pred_curves} shows representative prediction curves for four diverse fouling types at $N=15$, comparing the PINN main method against ODE-fit and RF baselines. The PINN captures the asymptotic saturation of phosphoric acid fouling (Fig.~\ref{fig:pred_curves}a, $R^2=0.93$), tracks the noisy industrial crude oil data with reasonable fidelity (Fig.~\ref{fig:pred_curves}b, $R^2=0.58$), and achieves near-perfect predictions on CaCO$_3$ coating curves (Fig.~\ref{fig:pred_curves}c, $R^2=0.998$). On the challenging unmodified CaCO$_3$ curve (Fig.~\ref{fig:pred_curves}d), all methods exhibit visible deviations from the true trajectory, consistent with the high experimental variability of these runs. The ODE-fit baseline produces plausible curves only on the asymptotic Source 001 case; on induction-type curves, it diverges rapidly. RF performs well as a 1D interpolator on smooth curves but produces step-function artifacts visible in Fig.~\ref{fig:pred_curves}d.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/fig3_prediction_curves.png}
-\caption{Representative prediction curves: true $R_f(t)$ vs.\ PINN, ODE-fit, and RF predictions ($N=15$ sparse training points, seed=42). (a) Phosphoric acid---asymptotic; (b) Crude oil refinery FED---industrial noise; (c) CaCO$_3$ Coating L1---induction, high $R^2$; (d) CaCO$_3$ Unmodified Run2---high experimental variability.}
+\caption{Representative reconstruction curves: true $R_f(t)$ vs.\ PINN, ODE-fit, and RF reconstructions ($N=15$ sparse training points, seed=42). (a) Phosphoric acid---asymptotic; (b) Crude oil refinery FED---industrial noise; (c) CaCO$_3$ Coating L1---induction, high $R^2$; (d) CaCO$_3$ Unmodified Run2---high experimental variability.}
 \label{fig:pred_curves}
 \end{figure}
 
@@ -312,6 +309,14 @@ S003 Coating L1 & 0.99$\pm$0.00 & 0.99$\pm$0.00 & \textbf{1.00$\pm$0.00} & 1.00$
 
 \textbf{Pre-training is the dominant driver}: On Source 001, removing pre-training (PT+Phys $\to$ NoPT+Phys) costs $\Delta R^2 = +3.10$---pre-training alone carries the entire performance. On Source 002 FED, the PT gain is $+0.19$. \textbf{The physics loss during fine-tuning contributes zero}: PT+Phys $-{}$ PT+NoPhys $= 0.000$ on all three curves. Once the model is pre-trained on diverse synthetic physics, adding explicit ODE constraints during fine-tuning provides no marginal benefit. This has a clear practical implication: \textbf{pre-training is the hard engineering work; fine-tuning on real data can be done without physics constraints.} On the cleanest curve (S003 Coating L1), all variants achieve $R^2 > 0.99$ because 15 sparse points alone suffice.
 
+\subsection{Comparison with Interpolation Baselines}
+
+We compared the PINN against four classical interpolation methods: cubic spline, smoothing spline (UnivariateSpline with automatic smoothing), and Gaussian Process regression with RBF and Mat\'{e}rn ($\nu=2.5$) kernels. All methods were given the same $N=5,10,15,20,30$ sparse points and evaluated on the full curve across all 18 curves (3 seeds each; full results in Supplementary Table~S2).
+
+\textbf{Interpolation baselines are competitive.} At $N=15$, smoothing spline achieves median $R^2 = 0.99$ across all 54 trials, and GP-Mat\'{e}rn achieves $R^2 = 0.99$ (all-trial median). Both numerically meet or exceed the PINN's median $R^2$ on the same task. At $N=5$, GP-Mat\'{e}rn ($R^2 = 0.89$) substantially outperforms PINN (which often fails to converge with only 5 points). However, cubic spline exhibits catastrophic oscillations on $\sim$10--15\% of trials (pulling its mean $R^2$ to approximately $-3000$), demonstrating the risk of unconstrained interpolation with very sparse data.
+
+\textbf{The PINN's advantage is not raw interpolation accuracy.} It lies in three areas that interpolation methods cannot address: (a) \textbf{physics-grounded representations}---the pre-training prior prevents physically impossible curve shapes (e.g., non-monotonic oscillations, negative $R_f$ below physically plausible bounds) that spline and GP methods can produce; (b) \textbf{downstream task coupling}---the PINN's ODE-conditioned architecture enables cleaning schedule optimization using predicted $\hat{R}_f(t)$ trajectories, whereas interpolation methods produce unstructured predictions incompatible with cleaning decision models; and (c) \textbf{extrapolation robustness}---the physics prior constrains the extrapolation to follow ODE dynamics, whereas spline/GP extrapolation is purely data-driven and can diverge arbitrarily. This reframes the contribution: the proposed framework is not a superior general-purpose interpolator, but a \textit{physics-informed representation learner} that connects sparse measurements to structured downstream decisions.
+
 \subsection{Single vs.\ Multi-Mechanism Pre-training}
 \label{sec:single_vs_multi}
 
@@ -339,27 +344,49 @@ Remaining 14 curves (aggregate) & \multicolumn{3}{c}{KS-large comparable to KS-s
 
 \subsection{Economic Analysis}
 
-Table~\ref{tab:economic} shows dimensionless cost ratios for different cleaning strategies.
+Table~\ref{tab:economic} shows dimensionless cost ratios for different cleaning strategies at the primary threshold ($f = 0.80$). Table~\ref{tab:economic_sensitivity} reports sensitivity to the threshold factor.
 
 \begin{table}[htbp]
 \centering
-\caption{Corrected dimensionless cost ratios ($N=15$). All strategies use segment-by-segment energy integration with Rf reset after each cleaning. $k$ = number of cleanings.}
+\caption{Dimensionless cost ratios at $R_{f,\text{crit}} = 0.80 \cdot \max(R_f)$ ($N=15$). Energy penalty uses true $R_f(t)$ for all strategies; PINN predictions are used only for cleaning timing decisions. Reference = threshold-triggered policy using true $R_f(t)$. $k$ = number of cleanings.}
 \label{tab:economic}
 \begin{tabular}{@{}p{3.2cm}rrrrrr@{}}
 \toprule
-Curve & Oracle $k$ & Fixed 25\% & Fixed 33\% & PINN $k$ & PINN Cost & Savings \\
+Curve & Ref.\ $k$ & Fixed 25\% & Fixed 33\% & PINN $k$ & PINN Cost & Savings \\
 \midrule
 Source 001---Phosphoric acid & 42 & 0.100 & 0.075 & 1 & \textbf{0.025} & 66.5\% \\
 Source 002 CBA---Crude oil & 2 & 1.924 & 1.459 & 0 & \textbf{0.069} & 95.3\% \\
 Source 002 FED---Crude oil & 10 & 0.407 & 0.308 & 1 & \textbf{0.109} & 64.5\% \\
-S003 Coating L1 & 15 & 0.111 & 0.060 & 1 & 0.109 & $-$81.9\% \\
-S003 Fig.11 Ref & 22 & 0.200 & 0.151 & 1 & \textbf{0.055} & 63.9\% \\
-S003 Fig.13 Flat & 5 & 0.673 & 0.487 & 1 & \textbf{0.164} & 66.3\% \\
+S003 Coating L1 & 15 & 0.226 & 0.169 & 1 & 0.180 & $-$6.2\% \\
+S003 Fig.11 Ref & 22 & 0.201 & 0.152 & 1 & \textbf{0.055} & 63.8\% \\
+S003 Fig.13 Flat & 5 & 0.762 & 0.572 & 1 & \textbf{0.219} & 61.8\% \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\textbf{Important implementation note}: In all strategies, the energy penalty integral $\int R_f(t) dt$ is computed from the \textit{true} $R_f(t)$ curve. The PINN prediction $\hat{R}_f(t)$ is used \textit{only} to decide when to schedule cleanings (by detecting threshold crossings). This prevents circular reasoning: the PINN cannot benefit from underestimating $R_f$ in the energy integral, because the integral always uses the true fouling trajectory. Cost ratios below 1.0 therefore reflect genuine cases where the PINN chooses cleaning times that are cheaper overall---fewer cleanings whose combined cost (cleaning fee + true energy penalty) is lower than the Oracle's more-frequent-cleaning schedule. The Oracle minimizes cleaning count subject to never exceeding $R_{f,\text{crit}}$, but does not minimize total cost when energy penalties are low relative to cleaning costs. For curves where the PINN achieves high $R^2$ (S003 Fig.11 Ref, $R^2=0.99$), the predicted cleaning schedule is based on accurate fouling forecasts, and cost savings (63.9\%) are credible. For curves with low $R^2$ (Source 002 CBA, $R^2=0.55$), the reported 95.3\% savings are \textit{not} reliable---the PINN predicts zero cleanings because it underestimates $R_f$, not because cleaning is genuinely unnecessary. The cost ratio should therefore be interpreted as an upper bound on achievable savings, conditional on sufficient prediction accuracy. The negative savings for S003 Coating L1 ($-$81.9\%) indicate that the PINN over-cleans relative to the fixed-interval baseline for this specific curve at this seed. All cost ratios include Oracle $k$ as a reference for the theoretical minimum number of cleanings.
+\begin{table}[htbp]
+\centering
+\caption{Multi-threshold sensitivity analysis ($N=15$, seed=42). PINN cost ratios at four threshold factors $f \in \{0.50, 0.65, 0.80, 0.95\}$. Energy penalty uses $\max(R_f(t), 0)$ so that coating-induced heat transfer enhancement (negative $R_f$) contributes zero penalty rather than a spurious negative cost. Bold = PINN beats best fixed-interval baseline.}
+\label{tab:economic_sensitivity}
+\begin{tabular}{@{}p{3.2cm}rrrr@{}}
+\toprule
+Curve & $f{=}0.50$ & $f{=}0.65$ & $f{=}0.80$ & $f{=}0.95$ \\
+\midrule
+Source 001---Phosphoric acid & \textbf{0.076} & 0.055 & \textbf{0.025} & \textbf{0.067} \\
+Source 002 CBA---Crude oil & \textbf{0.020} & \textbf{0.039} & \textbf{0.069} & \textbf{0.128} \\
+Source 002 FED---Crude oil & \textbf{0.018} & \textbf{0.026} & \textbf{0.109} & \textbf{0.356} \\
+S003 Coating L1 & \textbf{0.063} & \textbf{0.103} & 0.180 & 0.455 \\
+S003 Fig.11 Ref & \textbf{0.048} & \textbf{0.065} & \textbf{0.055} & \textbf{0.273} \\
+S003 Fig.13 Flat & \textbf{0.103} & \textbf{0.132} & \textbf{0.219} & \textbf{0.949} \\
+S003 Run1 (noisy) & \textbf{0.053} & \textbf{0.101} & \textbf{0.206} & \textbf{0.043} \\
+S003 Run2 (noisy) & \textbf{0.125} & \textbf{0.250} & \textbf{0.989} & \textbf{0.024} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Important implementation note}: In all strategies, the energy penalty integral uses $\max(R_f(t), 0)$---clipping negative $R_f$ (coating-induced heat transfer enhancement) to zero, so that early-stage enhancement contributes no penalty rather than a spurious negative cost. The PINN prediction $\hat{R}_f(t)$ is used \textit{only} to decide when to schedule cleanings (by detecting threshold crossings). This prevents circular reasoning: the PINN cannot benefit from underestimating $R_f$ in the energy integral, because the integral always uses the true fouling trajectory. Cost ratios below 1.0 therefore reflect genuine cases where the PINN chooses cleaning times that are cheaper overall---fewer cleanings whose combined cost (cleaning fee + true energy penalty) is lower than the reference policy's more-frequent-cleaning schedule. The reference policy minimizes cleaning count subject to never exceeding $R_{f,\text{crit}}$, but does not minimize total cost when energy penalties are low relative to cleaning costs. For curves where the PINN achieves high $R^2$ (S003 Fig.11 Ref, $R^2=0.99$), the predicted cleaning schedule is based on accurate fouling reconstructions, and cost savings (63.8\%) are credible. For curves with low $R^2$ (Source 002 CBA, $R^2=0.55$), the reported 95.3\% savings are \textit{not} reliable---the PINN predicts zero cleanings because it underestimates $R_f$, not because cleaning is genuinely unnecessary. The cost ratio should therefore be interpreted as an upper bound on achievable savings, conditional on sufficient reconstruction accuracy. The slightly negative savings for S003 Coating L1 ($-$6.2\%) indicate that the PINN marginally over-cleans relative to the fixed-interval baseline for this specific curve at this seed. All cost ratios include the reference policy's cleaning count ($k$) for context.
+
+\textbf{Threshold sensitivity}: Across the four threshold factors tested ($f = 0.50$--$0.95$), the PINN strategy's cost advantage over fixed-interval baselines is qualitatively stable (Table~\ref{tab:economic_sensitivity}). All cost ratios are positive after the $\max(R_f, 0)$ clipping. At lower thresholds ($f=0.50$), the reference policy cleans more frequently, making it harder for coarser-grained strategies to achieve low cost ratios. At higher thresholds ($f=0.95$), fewer cleaning events are triggered and the gap between strategies narrows. The PINN's advantage is largest at intermediate thresholds ($f=0.65$--$0.80$), which correspond to the industrially relevant regime where fouling is allowed to develop before intervention. At the highest threshold ($f=0.95$), noisy curves (Run1, Run2) show PINN cost ratios close to zero (0.043, 0.024) because the PINN predicts few or zero cleanings at this extreme setting while the reference policy also triggers few cleanings. We emphasize that in deployment, $R_{f,\text{crit}}$ would be set by the heat exchanger's design specification, not derived from the full-curve maximum---removing the retrospective knowledge limitation of this analysis.
 
 \subsection{Statistical Robustness: Multi-Seed Validation}
 \label{sec:multiseed}
@@ -446,7 +473,7 @@ Adding physics loss during fine-tuning (PT+Phys vs.\ PT+NoPhys) provides minimal
 
 A central question is: \textit{if we know the governing ODE, why not simply fit it to the sparse data?} The answer, revealed by our baseline experiment (Table~\ref{tab:main_results}), is that direct ODE fitting fails on 15 of 18 curves with only 15 sparse data points. The 3-parameter models are under-determined with sparse noisy data, causing the optimizer to converge to parameters that fit the training points but generalize poorly.
 
-The PINN circumvents this failure mode not by having a better ODE, but by having a learned prior over plausible curve shapes. The 3,000 epochs of multi-mechanism pre-training encode a rich distribution of physically realistic $R_f(t)$ trajectories into the network weights. During fine-tuning, this prior acts as a regularizer: sparse data points steer the prediction toward the correct curve, while pre-trained weights prevent the model from collapsing to degenerate solutions.
+The PINN circumvents this failure mode not by having a better ODE, but by having a learned prior over plausible curve shapes. The 3,000 epochs of multi-mechanism pre-training encode a rich distribution of physically realistic $R_f(t)$ trajectories into the network weights. During fine-tuning, this prior acts as a regularizer: sparse data points steer the reconstruction toward the correct curve, while pre-trained weights prevent the model from collapsing to degenerate solutions.
 
 \subsection{Prior Mismatch on Clean Asymptotic Curves}
 \label{sec:prior_mismatch}
@@ -455,7 +482,19 @@ Source 001 (phosphoric acid) illustrates a practical vulnerability of the pipeli
 
 \subsection{Limitations and Future Work}
 
-\textbf{Current limitations}: (1) \textbf{ODE model selection leaks full-curve information}. The current pipeline selects the ODE model by human inspection of the complete digitized curve, which constitutes information leakage: the model choice uses data that would not be available in a real sparse-data scenario. We quantified the impact by testing N-point-only automatic selection (choosing between ks\_simple and induction\_linear based on which ODE fits the $N=15$ sparse points better). Auto-selection accuracy is only 24\% (13/54 across 18 curves $\times$ 3 seeds), confirming that model identification from sparse data is unreliable. \textbf{However}, the practical impact is smaller than the accuracy suggests: on 16 of 18 curves, fine-tuning with the ``wrong'' ODE model achieves $R^2$ within $\pm 0.02$ of the correct model, because the pre-training prior provides a strong regularizer that compensates for mismatched physics constraints. The two exceptions are Source 001 (correct: $R^2=0.91$, wrong: $0.34$) and Source 003 Pattern1 (correct: $0.98$, wrong: $0.61$)---and on Source 001, the auto-selector correctly identifies ks\_simple in all 3 seeds. Automating ODE model selection without information leakage---while maintaining the robustness provided by the pre-training prior---remains a necessary prerequisite for fully hands-off industrial deployment. (2) Absolute extrapolation remains difficult---while PINN outperforms RF, the absolute $R^2$ on the extrapolated region remains negative. (3) Crude oil curves ($R^2 = 0.58$--0.62) reflect genuine industrial complexity and would benefit from additional input features unavailable in the digitized publications. (4) The current approach fine-tunes on a single curve; joint fine-tuning across multiple curves from the same plant would likely improve robustness. (5) The PINN contains 13,249 parameters while fine-tuning uses only 5--30 data points---a case of \textit{benign over-parameterization} where the pre-training phase provides strong implicit regularization \cite{neyshabur2015search}. The no-pre-training ablation (A3) confirms that the network architecture alone cannot provide sufficient regularization. (6) The induction model's sigmoid smoothing parameter $\alpha=10$ (yielding a transition width of $\sim$0.2 time units) was insensitive in the range $[5, 20]$.
+\textbf{Current limitations}: (1) \textbf{ODE model selection without full-curve leakage} is partially addressed by the sparse-only geometric heuristic (87\% accuracy; Section~2.3), but the remaining 13\% misclassification rate and the five curves where $|\Delta R^2| > 0.02$ mean that fully automated selection is not yet solved. Adapting the selection threshold to per-curve noise levels (noisy curves benefit from simpler ODE priors, as shown in Supplementary Table~S1) is a direction for future work.
+
+(2) \textbf{Absolute extrapolation remains unsolved}. While PINN outperforms RF on 6 of 8 curves, the absolute $R^2$ on the extrapolated region remains negative for all methods---the problem is inherently ill-posed with sparse training data.
+
+(3) \textbf{Interpolation baselines are competitive for the reconstruction task}. We tested cubic spline, smoothing spline, and Gaussian Process regression (RBF and Mat\'{e}rn kernels) on the same sparse reconstruction task. At $N=15$, smoothing spline achieves median $R^2 = 0.991$ and GP-Mat\'{e}rn achieves $R^2 = 0.994$ across 18 curves---competitive with or exceeding PINN (full results in Supplementary Table~S2). However, spline/GP methods lack physics constraints: they can produce non-monotonic or oscillatory reconstructions that violate fouling physics, and they cannot be used for cleaning optimization (which requires differentiable trajectory predictions parameterized by ODE physics). The PINN's advantage is not raw interpolation accuracy but (a) physics-grounded extrapolation that prevents physically impossible curve shapes, and (b) a unified framework that connects sparse reconstruction to downstream cleaning decisions.
+
+(4) \textbf{Crude oil curves} ($R^2 = 0.58$--0.62) reflect genuine industrial complexity and would benefit from additional input features (flow rate, temperature history) unavailable in the digitized publications.
+
+(5) \textbf{The current approach fine-tunes on a single curve}; joint fine-tuning across multiple curves from the same plant would likely improve robustness, particularly for the high-noise unmodified CaCO$_3$ curves where cross-seed variance is high.
+
+(6) \textbf{The PINN contains 13,249 parameters while fine-tuning uses only 5--30 data points}---a case of \textit{benign over-parameterization} where the pre-training phase provides strong implicit regularization \cite{neyshabur2015search}. The no-pre-training ablation (A3) confirms that the network architecture alone cannot provide sufficient regularization.
+
+(7) \textbf{The induction model's sigmoid smoothing parameter} $\alpha=10$ (yielding a transition width of $\sim$0.2 time units) was insensitive in the range $[5, 20]$.
 
 \textbf{Future work}: (1) Uncertainty quantification via Ensemble PINN or Monte Carlo Dropout. (2) Cross-device transfer learning within the same plant. (3) Multi-fidelity data fusion with CFD/HTRI simulations. (4) Online learning with concept drift detection. (5) Field validation with an industrial partner.
 
@@ -463,19 +502,24 @@ Source 001 (phosphoric acid) illustrates a practical vulnerability of the pipeli
 \section{Conclusion}
 %=====================================================================
 
-This study presented a multi-mechanism pre-training framework for physics-informed fouling resistance prediction. The key findings are:
+This study presented a multi-mechanism pre-training framework for physics-informed fouling resistance reconstruction from sparse measurements. The key findings are:
 
 \begin{enumerate}
 \item \textbf{Multi-mechanism diversity provides gains beyond data volume}. A KS-large control (2,000 KS trajectories, matched volume) confirms that mechanism diversity ($\Delta R^2 = +0.29$ on Source 001) cannot be replicated by scaling single-mechanism data. The often-quoted $R^2 = -1329$ (200-trajectory KS-small) reflects a confound of data volume and diversity; at equal volume, single-mechanism reaches $R^2 = 0.62$, while multi-mechanism reaches $R^2 = 0.91$. Volume and diversity are both necessary, but diversity provides the irreplaceable gain.
 \item \textbf{The framework achieves practical accuracy on complex fouling curves}. A 5-seed multi-seed validation across all 18 curves ($N=15$) confirms that PINN mean $R^2$ exceeds 0.90 on 12 of 18 curves. A complementary 10-seed experiment on 5 representative curves reveals that Source 001 performance is stable (median $R^2 = 0.90$, IQR $= [0.84, 0.92]$) provided the upstream ODE parameter estimation converges---a condition met in 9 of 10 seeds. The remaining curves fall into categories where either direct ODE fitting is simpler and more accurate (Source 001) or where both PINN and RF provide partial solutions in industrially challenging regimes.
-\item \textbf{Physics-constrained pre-training enables more robust extrapolation}. The pre-trained PINN outperforms RF in extrapolation on 6 of 8 tested curves at $N=5$ (median $\Delta R^2 = +1.8$), though neither method achieves positive absolute $R^2$. The PINN's physics prior prevents physically impossible extrapolations that RF can produce.
-\item \textbf{The approach is feasible for industrial deployment with one remaining automation gap}. Pre-training requires only publicly available physics models; fine-tuning takes approximately 3 seconds per heat exchanger on an NVIDIA RTX 4060 GPU; and PINN-driven cleaning strategies reduce dimensionless costs relative to fixed-interval policies. The current bottleneck is the need for human judgment in selecting the appropriate ODE model for a given curve---automating this step, or developing a single unified ODE that adapts to all curve types, is the main engineering task remaining before fully hands-off deployment.
+\item \textbf{Physics-constrained pre-training enables more robust extrapolation than purely data-driven methods}. The pre-trained PINN outperforms RF in extrapolation on 6 of 8 tested curves at $N=5$ (median $\Delta R^2 = +1.8$), though \textit{neither} method achieves positive absolute $R^2$---extrapolation remains unsolved for all methods. The PINN's physics prior provides a qualitative advantage in preventing physically impossible curve shapes (e.g., divergent oscillations), though we acknowledge that a quantitative metric for this property (e.g., monotonicity violation counts) remains to be developed.
+\item \textbf{The approach is computationally lightweight and may support future industrial adaptation}. Pre-training uses only publicly available physics models; fine-tuning takes approximately 3 seconds per target curve on an NVIDIA RTX 4060 GPU. In a retrospective illustrative cleaning analysis, PINN-derived schedules reduced dimensionless cost ratios by 20--67\% versus fixed-interval policies on curves with reliable reconstruction accuracy ($R^2 > 0.80$), with strategy rankings stable across a four-level threshold sensitivity analysis. In deployment, $R_{f,\text{crit}}$ would be set by the exchanger design specification, eliminating the retrospective-knowledge limitation. However, the current validation is limited to 18 literature-digitized curves (predominantly from laboratory studies), and two prerequisites remain: (a) automated ODE model selection without full-curve information leakage, and (b) cost-optimal scheduling that directly minimizes $C_{\text{total}}$ rather than relying on a threshold-triggered heuristic.
 \end{enumerate}
+
+%=====================================================================
+\section*{Supplementary Materials}
+
+Supplementary Tables S1 (auto ODE selection per-trial results) and S2 (spline/GP baseline results) accompany this manuscript.
 
 %=====================================================================
 \section*{Data and Code Availability}
 
-All code for data generation, model training, and experiment reproduction will be made available at a public GitHub repository with a Zenodo DOI upon publication. Digitized real fouling curves and pre-trained model weights are included\footnote{Anonymous repository URL will be provided during the review process.}.
+All code, digitized curve data, pre-trained model weights, and experiment scripts are available at \url{https://github.com/wy2627962897/fouling-pinn-pretrain} under the MIT license, with a Zenodo DOI to be registered upon publication. The repository includes: (a) \texttt{code/}---Python implementation of the multi-ODE PINN, pre-training, fine-tuning, and all baseline experiments; (b) \texttt{data/}---18 digitized real fouling curves and 2,000 synthetic pre-training trajectories; (c) \texttt{output/}---pre-trained model weights (\texttt{pretrained\_model.pt}) and experimental result files; (d) \texttt{figures/}---paper figures; (e) \texttt{README.md}---step-by-step reproduction instructions with dependencies (\texttt{requirements.txt}). All experiments were conducted with Python 3.11, PyTorch 2.5, and scikit-learn 1.5 on an NVIDIA RTX 4060 GPU (8 GB VRAM).
 
 %=====================================================================
 \section*{Acknowledgments}

@@ -1,0 +1,50 @@
+\documentclass{article}
+\begin{document}
+
+\begin{flushright}
+Jiancheng Liu\\
+College of Chemical and Biological Engineering\\
+Zhejiang University, Hangzhou 310058, China\\
+Email: 3240101908@zju.edu.cn
+\end{flushright}
+
+\vspace{1cm}
+
+\noindent Dear Editor,
+
+I am pleased to submit our manuscript entitled \textbf{``Multi-Mechanism Pre-Training of Physics-Informed Neural Networks for Fouling Resistance Reconstruction from Sparse Measurements''} for consideration in \textit{Thermal Science and Engineering Progress}.
+
+\vspace{0.5cm}
+
+\noindent \textbf{Summary and contribution}
+
+This paper presents an exploratory computational study on using multi-mechanism physics-informed pre-training to reconstruct heat exchanger fouling resistance curves from sparse measurement data. We propose a framework where a neural network is pre-trained on diverse synthetic data generated from five established fouling ODE models, then fine-tuned on as few as 5--30 real data points. The framework is validated on 18 fouling curves digitized from three peer-reviewed studies. The key finding is that \textit{mechanism diversity} during pre-training prevents the catastrophic over-specialization observed when pre-training on a single ODE model, providing performance gains that cannot be replicated by simply increasing data volume.
+
+We report results transparently, including competitive baselines (smoothing spline, Gaussian Process regression) that match or exceed the PINN on pure interpolation tasks. The framework's principal value lies in providing physics-grounded representations that connect sparse reconstruction to downstream cleaning decisions---a workflow that classical interpolation methods cannot offer. All code, data, and pre-trained model weights are publicly available at \url{https://github.com/wy2627962897/fouling-pinn-pretrain}.
+
+\vspace{0.5cm}
+
+\noindent \textbf{Why TSEP?}
+
+This manuscript aligns with TSEP's scope in thermal process modelling, simulation, and optimization. It addresses a practical engineering problem---fouling resistance estimation under data scarcity---using a computational approach that bridges established physical models with modern machine learning techniques. The topic is well suited to TSEP's readership in thermal engineering applications and industrial energy efficiency.
+
+\vspace{0.5cm}
+
+\noindent \textbf{Declarations}
+\begin{itemize}
+  \item This manuscript has not been published previously and is not under consideration elsewhere.
+  \item All authors have approved the manuscript and agree with its submission to TSEP.
+  \item The author declares no competing financial interests or personal relationships that could have influenced this work.
+  \item This research did not receive any specific grant from funding agencies in the public, commercial, or not-for-profit sectors.
+\end{itemize}
+
+\vspace{0.5cm}
+
+\noindent Thank you for your consideration.
+
+\vspace{0.5cm}
+
+\noindent Sincerely,\\
+Jiancheng Liu
+
+\end{document}

@@ -603,7 +603,17 @@ def compute_dimensionless_cost_ratio(
 
     All strategies correctly reset Rf to 0 after each cleaning,
     tracking energy penalty segment-by-segment between cleanings.
-    Oracle = clean exactly when TRUE Rf reaches Rf_crit (theoretical minimum).
+
+    IMPORTANT (Q12): The "reference" policy uses true Rf(t) to trigger cleaning
+    at Rf_crit. This is NOT a cost-optimal benchmark -- it's a threshold-triggered
+    policy that assumes perfect real-time fouling monitoring. It does NOT minimize
+    total cost; it simply cleans whenever true Rf exceeds the threshold.
+    Cost ratios below 1.0 mean the strategy chooses cheaper cleaning times
+    than the reference -- not that it beats the global optimum.
+
+    Also: Rf_crit is typically defined from the full-curve max(Rf), which is
+    unknown at t=0 in real operations. Multi-threshold sensitivity analysis
+    is needed to assess robustness to this choice.
 
     Parameters
     ----------
@@ -619,7 +629,8 @@ def compute_dimensionless_cost_ratio(
     t_total = t_curve[-1] - t0
 
     # Helper: energy cost for ONE fouling cycle of duration D
-    # Uses the TRUE Rf_curve (after reset, fouling follows same trajectory)
+    # Uses the TRUE Rf_curve, clipped at zero: negative Rf (coating enhancement)
+    # contributes zero penalty, not a spurious negative cost.
     def cycle_energy(D):
         if D <= 0:
             return 0.0
@@ -627,7 +638,8 @@ def compute_dimensionless_cost_ratio(
         mask = (t_curve - t0) <= D
         if mask.sum() < 2:
             return 0.0
-        return float(np.trapz(Rf_curve[mask], t_curve[mask]))
+        Rf_clipped = np.maximum(Rf_curve[mask], 0.0)
+        return float(np.trapz(Rf_clipped, t_curve[mask]))
 
     def strategy_cost_from_intervals(intervals):
         """intervals: list of (usable_time_before_cleaning, ...)"""
@@ -637,19 +649,20 @@ def compute_dimensionless_cost_ratio(
             total += cycle_energy(usable_t)
         return total
 
-    # ── Oracle: clean exactly when TRUE Rf reaches Rf_crit ──
+    # ── Reference threshold policy: clean when TRUE Rf reaches Rf_crit ──
+    # NOT a cost-optimal benchmark. Assumes perfect real-time Rf monitoring.
     above_crit = np.where(Rf_curve >= Rf_crit)[0]
     if len(above_crit) == 0:
-        oracle_cost = cycle_energy(t_total)
-        n_oracle = 0
+        ref_cost = cycle_energy(t_total)
+        n_ref = 0
     else:
-        oracle_intervals = []
+        ref_intervals = []
         t_current = t0
         idx = 0
         while idx < len(above_crit):
             clean_t = t_curve[above_crit[idx]]
             usable = clean_t - t_current
-            oracle_intervals.append(usable)
+            ref_intervals.append(usable)
             t_current = clean_t + t_cleaning_downtime
             # Find next crossing after downtime
             next_idx = np.where((t_curve >= t_current) & (Rf_curve >= Rf_crit))[0]
@@ -663,18 +676,18 @@ def compute_dimensionless_cost_ratio(
         # Remaining energy after last cleaning
         remaining = t_curve[-1] - t_current
         if remaining > 0:
-            oracle_cost = cycle_energy(remaining)
-            for usable in oracle_intervals:
-                oracle_cost += 1.0 + cycle_energy(usable)
-            n_oracle = len(oracle_intervals)
+            ref_cost = cycle_energy(remaining)
+            for usable in ref_intervals:
+                ref_cost += 1.0 + cycle_energy(usable)
+            n_ref = len(ref_intervals)
         else:
-            oracle_cost = 0.0
-            for usable in oracle_intervals:
-                oracle_cost += 1.0 + cycle_energy(usable)
-            n_oracle = len(oracle_intervals)
+            ref_cost = 0.0
+            for usable in ref_intervals:
+                ref_cost += 1.0 + cycle_energy(usable)
+            n_ref = len(ref_intervals)
 
-    if oracle_cost <= 0:
-        oracle_cost = max(cycle_energy(t_total), 1e-10)
+    if ref_cost <= 0:
+        ref_cost = max(cycle_energy(t_total), 1e-10)
 
     # ── Fixed-interval strategy ──
     if fixed_interval is not None:
@@ -718,28 +731,31 @@ def compute_dimensionless_cost_ratio(
         strategy_cost = cycle_energy(t_total)
         n_strategy = 0
 
-    cost_ratio = strategy_cost / oracle_cost if oracle_cost > 0 else 1.0
+    cost_ratio = strategy_cost / ref_cost if ref_cost > 0 else 1.0
 
     return {
         "cost_ratio": cost_ratio,
-        "oracle_cost": oracle_cost,
+        "ref_cost": ref_cost,
         "strategy_cost": strategy_cost,
         "n_cleanings_strategy": n_strategy,
-        "n_cleanings_oracle": n_oracle,
+        "n_cleanings_ref": n_ref,
     }
 
 
 # Run economic analysis for each curve using best method prediction
-print("\n--- Dimensionless Cost Ratio Analysis ---")
+print("\n--- Dimensionless Cost Ratio Analysis (Q12: multi-threshold sensitivity) ---")
+print("Reference = threshold-triggered policy using TRUE Rf(t) [NOT cost-optimal]")
 economic_results = {}
+
+# Multi-threshold sensitivity: in practice, Rf_crit is set by equipment design specs.
+# Since we lack per-curve specs, we sweep 4 threshold levels to assess robustness.
+THRESHOLD_FACTORS = [0.50, 0.65, 0.80, 0.95]
 
 for curve_name, curve_results in all_results.items():
     curve_info = real_curves[curve_name]
     t_full = curve_info["t"]
     rf_full = curve_info["Rf"]
 
-    # Determine Rf_crit as 80% of max Rf
-    Rf_crit = 0.8 * np.max(rf_full)
     t_downtime = 0.02 * (t_full[-1] - t_full[0])  # 2% of total time
 
     eco_curve = {}
@@ -756,39 +772,62 @@ for curve_name, curve_results in all_results.items():
         y_pred = main_res.get("y_pred")
 
         if y_pred is not None:
+            # Use the primary threshold (0.80) for the main table,
+            # but also store results for all thresholds
+            Rf_crit_primary = 0.80 * np.max(rf_full)
+
             # Fixed-interval strategies
             for interval_pct in [0.25, 0.33, 0.5]:
                 interval = (t_full[-1] - t_full[0]) * interval_pct
                 eco = compute_dimensionless_cost_ratio(
-                    rf_full, t_full, Rf_crit, t_downtime,
+                    rf_full, t_full, Rf_crit_primary, t_downtime,
                     fixed_interval=interval,
                 )
                 eco["strategy"] = f"Fixed {interval_pct*100:.0f}%"
 
             # Prediction-based strategy
             eco_pred = compute_dimensionless_cost_ratio(
-                rf_full, t_full, Rf_crit, t_downtime,
+                rf_full, t_full, Rf_crit_primary, t_downtime,
                 prediction_based=True, Rf_predicted=y_pred,
             )
             eco_pred["strategy"] = "PINN Predicted"
 
-            # Threshold-based (using true Rf — ideal but requires continuous monitoring)
-            eco_thresh = compute_dimensionless_cost_ratio(
-                rf_full, t_full, Rf_crit, t_downtime,
-                threshold_based=True, Rf_predicted=rf_full,
-            )
-            eco_thresh["strategy"] = "Threshold (Oracle)"
+            # Multi-threshold sensitivity for PINN strategy
+            sensitivity = {}
+            for factor in THRESHOLD_FACTORS:
+                Rf_crit_sens = factor * np.max(rf_full)
+                eco_sens = compute_dimensionless_cost_ratio(
+                    rf_full, t_full, Rf_crit_sens, t_downtime,
+                    prediction_based=True, Rf_predicted=y_pred,
+                )
+                sens_fixed25 = compute_dimensionless_cost_ratio(
+                    rf_full, t_full, Rf_crit_sens, t_downtime,
+                    fixed_interval=(t_full[-1] - t_full[0]) * 0.25,
+                )
+                sens_fixed33 = compute_dimensionless_cost_ratio(
+                    rf_full, t_full, Rf_crit_sens, t_downtime,
+                    fixed_interval=(t_full[-1] - t_full[0]) * 0.33,
+                )
+                sensitivity[f"factor_{factor:.2f}"] = {
+                    "Rf_crit": float(Rf_crit_sens),
+                    "pinn_cost_ratio": eco_sens["cost_ratio"],
+                    "pinn_n_cleanings": eco_sens["n_cleanings_strategy"],
+                    "ref_n_cleanings": eco_sens["n_cleanings_ref"],
+                    "fixed25_cost_ratio": sens_fixed25["cost_ratio"],
+                    "fixed33_cost_ratio": sens_fixed33["cost_ratio"],
+                }
 
             eco_curve[n_key] = {
                 "fixed_25pct": compute_dimensionless_cost_ratio(
-                    rf_full, t_full, Rf_crit, t_downtime,
+                    rf_full, t_full, Rf_crit_primary, t_downtime,
                     fixed_interval=(t_full[-1] - t_full[0]) * 0.25,
                 ),
                 "fixed_33pct": compute_dimensionless_cost_ratio(
-                    rf_full, t_full, Rf_crit, t_downtime,
+                    rf_full, t_full, Rf_crit_primary, t_downtime,
                     fixed_interval=(t_full[-1] - t_full[0]) * 0.33,
                 ),
                 "pinn_predicted": eco_pred,
+                "threshold_sensitivity": sensitivity,
             }
 
             print(f"  {curve_name} N={n_sparse}: "
@@ -818,7 +857,7 @@ for curve_name, eco_data in economic_results.items():
         ]
         bars = ax.bar(x + i * width, ratios, width, label=n_key, alpha=0.8)
 
-    ax.axhline(y=1.0, color="red", linestyle="--", linewidth=1.5, label="Oracle (optimal)")
+    ax.axhline(y=1.0, color="red", linestyle="--", linewidth=1.5, label="Reference (true-curve threshold)")
     ax.set_xticks(x + width)
     ax.set_xticklabels(strategies)
     ax.set_ylabel("Dimensionless Cost Ratio")

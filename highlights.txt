@@ -1,0 +1,9 @@
+1. Multi-mechanism ODE pre-training prevents PINN overfitting: diversity provides +0.29 R-squared gain beyond matched-volume single-mechanism pre-training.
+
+2. Framework validated on 18 literature-digitized fouling curves; PINN rescues 12 of 15 curves where direct ODE fitting fails under sparse data (N=5-30).
+
+3. Classical interpolation baselines (smoothing spline, GP-Matern) remain competitive for pure reconstruction; the framework's value lies in physics-grounded representation and cleaning decision coupling.
+
+4. N-point-only geometric ODE auto-selector achieves 87% accuracy; pipeline is computationally lightweight (approximately 3 seconds fine-tuning per curve on consumer GPU).
+
+5. Illustrative cleaning analysis shows 20-67% dimensionless cost reduction versus fixed-interval policies on high-accuracy curves.

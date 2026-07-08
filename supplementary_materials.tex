@@ -1,0 +1,119 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{hyperref}
+
+\begin{document}
+
+\title{Supplementary Materials: Multi-Mechanism Pre-Training of Physics-Informed Neural Networks for Fouling Resistance Reconstruction from Sparse Measurements}
+
+\maketitle
+
+%=====================================================================
+\section*{Table S1: Auto ODE Selection Ablation --- Per-Trial Results}
+%=====================================================================
+
+Auto-selection uses a geometric heuristic operating on $N=15$ sparse points only:
+ratio of mean $R_f$ in the first third vs.\ last third of sparse observations.
+Ratio $<0.15$ selects \texttt{induction\_linear}; otherwise \texttt{ks\_simple}.
+Overall accuracy: 87.0\% (47 correct / 54 trials across 18 curves $\times$ 3 seeds).
+
+\begin{table}[htbp]
+\centering
+\caption{Auto ODE selection results ($N=15$, seeds 200--202). Bold rows indicate $|\Delta R^2| > 0.02$.}
+\label{tab:s1}
+\begin{tabular}{@{}p{3.0cm}rrp{2.8cm}p{2.8cm}rrr@{}}
+\toprule
+Curve & Seed & Correct ODE & Auto-selected ODE & Match? & $R^2$ (Correct) & $R^2$ (Auto) & $\Delta R^2$ \\
+\midrule
+source\_001\_fig7 & 200 & ks\_simple & ks\_simple & Y & 0.9304 & 0.9304 & 0.0000 \\
+source\_001\_fig7 & 201 & ks\_simple & ks\_simple & Y & 0.8928 & 0.8901 & 0.0027 \\
+source\_001\_fig7 & 202 & ks\_simple & ks\_simple & Y & 0.8911 & 0.8911 & 0.0000 \\
+source\_002\_cba  & 200 & ks\_simple & ks\_simple & Y & 0.3551 & 0.3551 & 0.0000 \\
+source\_002\_cba  & 201 & ks\_simple & ks\_simple & Y & 0.3053 & 0.3053 & 0.0000 \\
+source\_002\_cba  & 202 & ks\_simple & ks\_simple & Y & 0.3285 & 0.3285 & 0.0000 \\
+source\_002\_fed  & 200 & ks\_simple & ks\_simple & Y & 0.6316 & 0.6316 & 0.0000 \\
+source\_002\_fed  & 201 & ks\_simple & ks\_simple & Y & 0.6231 & 0.6231 & $-0.0001$ \\
+source\_002\_fed  & 202 & ks\_simple & ks\_simple & Y & 0.6587 & 0.6587 & 0.0000 \\
+source\_003\_coating\_l1 & 200 & induction\_linear & induction\_linear & Y & 0.9858 & 0.9858 & 0.0000 \\
+source\_003\_coating\_l1 & 201 & induction\_linear & induction\_linear & Y & 0.9900 & 0.9900 & 0.0000 \\
+source\_003\_coating\_l1 & 202 & induction\_linear & induction\_linear & Y & 0.9887 & 0.9887 & 0.0000 \\
+source\_003\_coating\_l2 & 200 & induction\_linear & induction\_linear & Y & 0.9778 & 0.9778 & 0.0000 \\
+source\_003\_coating\_l2 & 201 & induction\_linear & induction\_linear & Y & 0.9843 & 0.9843 & 0.0000 \\
+source\_003\_coating\_l2 & 202 & induction\_linear & induction\_linear & Y & 0.9829 & 0.9826 & 0.0003 \\
+source\_003\_coating\_l3 & 200 & induction\_linear & induction\_linear & Y & 0.9940 & 0.9940 & 0.0000 \\
+source\_003\_coating\_l3 & 201 & induction\_linear & induction\_linear & Y & 0.9940 & 0.9942 & $-0.0002$ \\
+source\_003\_coating\_l3 & 202 & induction\_linear & induction\_linear & Y & 0.9940 & 0.9940 & 0.0000 \\
+source\_003\_coating\_ref & 200 & induction\_linear & induction\_linear & Y & 0.9970 & 0.9970 & 0.0000 \\
+source\_003\_coating\_ref & 201 & induction\_linear & induction\_linear & Y & 0.9966 & 0.9966 & 0.0000 \\
+source\_003\_coating\_ref & 202 & induction\_linear & induction\_linear & Y & 0.9970 & 0.9970 & 0.0000 \\
+source\_003\_fig11\_diapro & 200 & induction\_linear & induction\_linear & Y & 0.9860 & 0.9856 & 0.0004 \\
+source\_003\_fig11\_diapro & 201 & induction\_linear & induction\_linear & Y & 0.9882 & 0.9878 & 0.0004 \\
+source\_003\_fig11\_diapro & 202 & induction\_linear & induction\_linear & Y & 0.9880 & 0.9882 & $-0.0002$ \\
+source\_003\_fig11\_grit220 & 200 & induction\_linear & induction\_linear & Y & 0.9903 & 0.9911 & $-0.0008$ \\
+source\_003\_fig11\_grit220 & 201 & induction\_linear & induction\_linear & Y & 0.9926 & 0.9908 & 0.0018 \\
+source\_003\_fig11\_grit220 & 202 & induction\_linear & induction\_linear & Y & 0.9904 & 0.9889 & 0.0016 \\
+source\_003\_fig11\_grit80 & 200 & induction\_linear & induction\_linear & Y & 0.9862 & 0.9880 & $-0.0018$ \\
+source\_003\_fig11\_grit80 & 201 & induction\_linear & induction\_linear & Y & 0.9920 & 0.9866 & 0.0054 \\
+source\_003\_fig11\_grit80 & 202 & induction\_linear & induction\_linear & Y & 0.9915 & 0.9904 & 0.0011 \\
+source\_003\_fig11\_ref & 200 & induction\_linear & induction\_linear & Y & 0.9950 & 0.9990 & $-0.0040$ \\
+source\_003\_fig11\_ref & 201 & induction\_linear & induction\_linear & Y & 0.9953 & 0.9953 & $-0.0000$ \\
+source\_003\_fig11\_ref & 202 & induction\_linear & induction\_linear & Y & 0.9899 & 0.9903 & $-0.0004$ \\
+source\_003\_fig13\_flat & 200 & induction\_linear & induction\_linear & Y & 0.9920 & 0.9920 & 0.0000 \\
+source\_003\_fig13\_flat & 201 & induction\_linear & induction\_linear & Y & 0.9920 & 0.9921 & $-0.0001$ \\
+source\_003\_fig13\_flat & 202 & induction\_linear & induction\_linear & Y & 0.9925 & 0.9925 & 0.0000 \\
+source\_003\_fig13\_pat1 & 200 & induction\_linear & induction\_linear & Y & 0.9661 & 0.9661 & 0.0000 \\
+source\_003\_fig13\_pat1 & 201 & induction\_linear & induction\_linear & Y & 0.9657 & 0.9656 & 0.0001 \\
+source\_003\_fig13\_pat1 & 202 & induction\_linear & induction\_linear & Y & 0.9654 & 0.9654 & 0.0000 \\
+\textbf{source\_003\_fig13\_pat2} & 200 & induction\_linear & ks\_simple & N & 0.9732 & 0.9386 & \textbf{0.0346} \\
+source\_003\_fig13\_pat2 & 201 & induction\_linear & induction\_linear & Y & 0.9467 & 0.9477 & $-0.0010$ \\
+source\_003\_fig13\_pat2 & 202 & induction\_linear & induction\_linear & Y & 0.9731 & 0.9731 & 0.0000 \\
+\textbf{source\_003\_fig13\_pat3} & 200 & induction\_linear & ks\_simple & N & 0.7712 & 0.8579 & \textbf{$-0.0867$} \\
+\textbf{source\_003\_fig13\_pat3} & 201 & induction\_linear & ks\_simple & N & 0.5069 & 0.9846 & \textbf{$-0.4777$} \\
+\textbf{source\_003\_fig13\_pat3} & 202 & induction\_linear & ks\_simple & N & 0.3710 & 0.4582 & \textbf{$-0.0872$} \\
+\textbf{source\_003\_run1} & 200 & induction\_linear & induction\_linear & Y & 0.8532 & 0.8295 & \textbf{0.0237} \\
+source\_003\_run1 & 201 & induction\_linear & induction\_linear & Y & 0.8304 & 0.8304 & 0.0000 \\
+source\_003\_run1 & 202 & induction\_linear & induction\_linear & Y & 0.8371 & 0.8436 & $-0.0065$ \\
+\textbf{source\_003\_run2} & 200 & induction\_linear & ks\_simple & N & 0.8461 & 0.8828 & \textbf{$-0.0367$} \\
+\textbf{source\_003\_run2} & 201 & induction\_linear & ks\_simple & N & 0.8220 & 0.9442 & \textbf{$-0.1222$} \\
+source\_003\_run2 & 202 & induction\_linear & induction\_linear & Y & 0.6104 & 0.6104 & 0.0000 \\
+\textbf{source\_003\_run3} & 200 & induction\_linear & induction\_linear & Y & 0.8563 & 0.8563 & 0.0000 \\
+\textbf{source\_003\_run3} & 201 & induction\_linear & ks\_simple & N & 0.9104 & 1.0300 & \textbf{$-0.1197$} \\
+source\_003\_run3 & 202 & induction\_linear & induction\_linear & Y & 0.8094 & 0.8094 & 0.0000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Note: On 3 curves (source\_003\_fig13\_pat3, source\_003\_run2, source\_003\_run3), the auto-selected ``wrong'' ODE (ks\_simple) achieves \textit{higher} $R^2$ than the correct ODE in some seeds---the simpler asymptotic prior provides stronger regularization when the data are both sparse and noisy.
+
+%=====================================================================
+\section*{Table S2: Spline and Gaussian Process Baselines}
+%=====================================================================
+
+All methods use only the $N$ sparse points for fitting and are evaluated on the full curve.
+Results aggregated across 18 curves $\times$ 3 seeds = 54 trials per $N$ value.
+Median and IQR are computed from all 54 trials.
+
+\begin{table}[htbp]
+\centering
+\caption{Spline and GP baseline performance at each sparse budget ($N=5,10,15,20,30$). Values are all-trial median [IQR].}
+\label{tab:s2}
+\begin{tabular}{@{}lrrrrr@{}}
+\toprule
+Method & $N=5$ & $N=10$ & $N=15$ & $N=20$ & $N=30$ \\
+\midrule
+Cubic Spline & 0.52 [0.36, 0.88] & 0.94 [0.74, 0.99] & 0.99 [0.92, 1.00] & 0.99 [0.97, 1.00] & 1.00 [0.99, 1.00] \\
+Smoothing Spline & 0.84 [0.60, 0.95] & 0.98 [0.89, 0.99] & 0.99 [0.98, 1.00] & 0.99 [0.98, 1.00] & 0.99 [0.99, 1.00] \\
+GP-RBF & 0.86 [0.66, 0.96] & 0.98 [0.90, 0.99] & 0.99 [0.98, 1.00] & 1.00 [0.99, 1.00] & 1.00 [0.99, 1.00] \\
+GP-Mat\'{e}rn & 0.89 [0.70, 0.97] & 0.98 [0.92, 0.99] & 0.99 [0.98, 1.00] & 1.00 [0.99, 1.00] & 1.00 [1.00, 1.00] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Note}: Cubic spline produces catastrophic oscillations on $\sim$10--15\% of trials (mean is pulled to large negative values, $\sim -3000$ at $N=15$), making the mean misleading. The median better reflects typical performance. Smoothing spline and GP variants are more stable. GP-Mat\'{e}rn with $\nu=2.5$ achieves the highest median $R^2$ at all $N$ levels.
+
+\textbf{Comparison with PINN}: At $N=15$, PINN (Main: PT+Phys, single seed 42) achieves median $R^2$ across curves of approximately 0.94--0.96. Smoothing spline and GP-Mat\'{e}rn achieve median $R^2 \approx 0.99$. However, these methods provide no physics constraints, cannot be used for cleaning optimization, and can produce oscillatory or non-monotonic reconstructions that violate known fouling physics.
+
+\end{document}
