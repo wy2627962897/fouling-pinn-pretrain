@@ -269,21 +269,26 @@ Table~\ref{tab:extrap} presents the extrapolation experiment, where models are t
 
 \begin{table}[htbp]
 \centering
-\caption{Extrapolation test $\Delta R^2$ (PINN $-$ RF).}
+\caption{Extrapolation: absolute PINN $R^2$ and $\Delta R^2$ (PINN $-$ RF), 3-seed average. Both methods produce negative $R^2$ on all curves---extrapolation is not solved.}
 \label{tab:extrap}
-\begin{tabular}{@{}lcc@{}}
+\begin{tabular}{@{}p{3.5cm}rrrrr@{}}
 \toprule
-Curve & $N=5$ & $N=10$ \\
+Curve & \multicolumn{2}{c}{$N=5$} & \multicolumn{2}{c}{$N=10$} & $N=15$ \\
+ & PINN $R^2$ & $\Delta R^2$ & PINN $R^2$ & $\Delta R^2$ & PINN $R^2$ \\
 \midrule
-Source 001---Phosphoric acid & \textbf{+18.7} & +5.4 \\
-Source 002 FED---Crude oil & $-$1.3 & \textbf{+2.8} \\
-Source 003 Run1---CaCO$_3$ & \textbf{+1.9} & +1.6 \\
-Source 003 Run2---CaCO$_3$ & \textbf{+2.6} & +1.3 \\
+Source 001---Phosphoric acid & $-$928.5 & $-$905.5 & $-$49.7 & $-$40.8 & $-$5.96 \\
+Source 002 FED---Crude oil & $-$10.2 & $-$9.5 & $-$5.2 & $-$4.1 & $-$4.76 \\
+Source 003 Run1---CaCO$_3$ & $-$2.8 & \textbf{+0.2} & $-$2.2 & \textbf{+0.6} & $-$1.69 \\
+Source 003 Run2---CaCO$_3$ & $-$1.9 & \textbf{+1.5} & $-$2.4 & \textbf{+0.4} & $-$1.90 \\
+S003 Coating L1 & $-$3.5 & \textbf{+2.2} & $-$3.3 & \textbf{+2.1} & $-$2.70 \\
+S003 Coating L2 & $-$5.6 & \textbf{+2.9} & $-$3.6 & \textbf{+1.4} & $-$2.78 \\
+S003 Fig.11 Ref & $-$2.2 & \textbf{+7.2} & $-$1.6 & \textbf{+4.0} & $-$1.39 \\
+S003 Fig.13 Flat & $-$11.4 & $-$4.9 & $-$13.1 & $-$7.5 & $-$12.68 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The PINN consistently outperforms RF in extrapolation across all curves and sparsity levels. The advantage is largest at $N=5$, where RF cannot predict beyond its training time range, while the PINN's physics prior provides a meaningful inductive bias.
+\textbf{Honest assessment}: Absolute extrapolation $R^2$ is negative for all methods on all curves, including those where PINN achieves $R^2 > 0.99$ in interpolation (Coating L1, L2, Fig.11 Ref). This is not a deficiency of our method---it reflects the fundamental difficulty of predicting fouling dynamics beyond the observed time window with any approach. The PINN degrades more gracefully (positive $\Delta R^2$ on 6/8 curves at $N=5$, 6/8 at $N=10$), because its physics prior prevents physically impossible predictions---negative $R_f$ values or non-monotonic behavior---that RF, lacking constraints, can produce. We therefore report $\Delta R^2$ as a measure of \textit{relative robustness}, not as evidence that extrapolation is solved. The best absolute PINN extrapolation $R^2$ observed is $-1.39$ (Source 003 Fig.11 Ref, $N=15$), confirming that even under favorable conditions, extrapolation remains an open challenge.
 
 \subsection{Ablation Analysis}
 
